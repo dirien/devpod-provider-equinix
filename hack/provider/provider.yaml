@@ -1,0 +1,148 @@
+name: equinix
+version: ##VERSION##
+description: |-
+  DevPod on Equinix Metal
+icon: https://avatars.githubusercontent.com/u/1302449?v=4
+optionGroups:
+  - options:
+      - EQUINIX_METRO
+      - EQUINIX_PLAN
+      - EQUINIX_OS
+      - EQUINIX_DISK_SIZE
+    name: "Equinix options"
+  - options:
+      - AGENT_PATH
+      - AGENT_DATA_PATH
+      - INACTIVITY_TIMEOUT
+      - INJECT_DOCKER_CREDENTIALS
+      - INJECT_GIT_CREDENTIALS
+    name: "Agent options"
+options:
+  METAL_AUTH_TOKEN:
+    description: The Equinix Auth Token to use.
+    required: true
+    password: true
+
+  EQUINIX_PROJECT:
+    description: The Equinix project to use.
+    required: true
+
+  EQUINIX_METRO:
+    description: The Equinix metro to use. E.g. am
+    required: true
+    default: fr
+    suggestions:
+      - se
+      - mt
+      - dc
+      - he
+      - hk
+      - am
+      - ny
+      - ty
+      - at
+      - sl
+      - md
+      - sp
+      - fr
+      - sy
+      - ld
+      - sg
+      - sk
+      - pa
+      - tr
+      - me
+      - os
+      - sv
+      - la
+      - ch
+      - da
+
+  EQUINIX_DISK_SIZE:
+    description: The disk size in GB.
+    default: "150"
+
+  EQUINIX_OS:
+    description: The disk image to use, check your metro for available images.
+    default: flatcar_stable
+
+  EQUINIX_PLAN:
+    description: The machine type to use, check your metro for available plans.
+    default: c3.small.x86
+    suggestions:
+      - a3.large.x86
+      - c2.medium.x86
+      - c3.large.arm64
+      - c3.medium.x86
+      - c3.small.x86
+      - m2.xlarge.x86
+      - m3.large.x86
+      - m3.small.x86
+      - n2.xlarge.x86
+      - n3.xlarge.x86
+      - s3.xlarge.x86
+
+  INACTIVITY_TIMEOUT:
+    description: If defined, will automatically stop the VM after the inactivity period.
+    default: 10m
+  INJECT_GIT_CREDENTIALS:
+    description: "If DevPod should inject git credentials into the remote host."
+    default: "true"
+  INJECT_DOCKER_CREDENTIALS:
+    description: "If DevPod should inject docker credentials into the remote host."
+    default: "true"
+  AGENT_PATH:
+    description: The path where to inject the DevPod agent to.
+    default: /home/devpod/.devpod/devpod
+  AGENT_DATA_PATH:
+    description: The path where to store the agent data.
+    default: /home/devpod/.devpod/agent
+agent:
+  path: ${AGENT_PATH}
+  dataPath: ${AGENT_DATA_PATH}
+  inactivityTimeout: ${INACTIVITY_TIMEOUT}
+  injectGitCredentials: ${INJECT_GIT_CREDENTIALS}
+  injectDockerCredentials: ${INJECT_DOCKER_CREDENTIALS}
+  binaries:
+    EQUINIX_PROVIDER:
+      - os: linux
+        arch: amd64
+        path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-linux-amd64
+        checksum: ##CHECKSUM_LINUX_AMD64##
+      - os: linux
+        arch: arm64
+        path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-linux-arm64
+        checksum: ##CHECKSUM_LINUX_ARM64##
+  exec:
+    shutdown: |-
+      ${EQUINIX_PROVIDER} stop
+binaries:
+  EQUINIX_PROVIDER:
+    - os: linux
+      arch: amd64
+      path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-linux-amd64
+      checksum: ##CHECKSUM_LINUX_AMD64##
+    - os: linux
+      arch: arm64
+      path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-linux-arm64
+      checksum: ##CHECKSUM_LINUX_ARM64##
+    - os: darwin
+      arch: amd64
+      path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-darwin-amd64
+      checksum: ##CHECKSUM_DARWIN_AMD64##
+    - os: darwin
+      arch: arm64
+      path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-darwin-arm64
+      checksum: ##CHECKSUM_DARWIN_ARM64##
+    - os: windows
+      arch: amd64
+      path: https://github.com/dirien/devpod-provider-equinix/releases/download/##VERSION##/devpod-provider-equinix-windows-amd64.exe
+      checksum: ##CHECKSUM_WINDOWS_AMD64##
+exec:
+  init: ${EQUINIX_PROVIDER} init
+  command: ${EQUINIX_PROVIDER} command
+  create: ${EQUINIX_PROVIDER} create
+  delete: ${EQUINIX_PROVIDER} delete
+  start: ${EQUINIX_PROVIDER} start
+  stop: ${EQUINIX_PROVIDER} stop
+  status: ${EQUINIX_PROVIDER} status
