@@ -2,13 +2,12 @@ name: equinix
 version: ##VERSION##
 description: |-
   DevPod on Equinix Metal
-icon: https://avatars.githubusercontent.com/u/1302449?v=4
+icon: https://raw.githubusercontent.com/dirien/devpod-provider-equinix/main/equinix.png
 optionGroups:
   - options:
       - EQUINIX_METRO
       - EQUINIX_PLAN
       - EQUINIX_OS
-      - EQUINIX_DISK_SIZE
     name: "Equinix options"
   - options:
       - AGENT_PATH
@@ -57,10 +56,6 @@ options:
       - la
       - ch
       - da
-
-  EQUINIX_DISK_SIZE:
-    description: The disk size in GB.
-    default: "150"
 
   EQUINIX_OS:
     description: The disk image to use, check your metro for available images.
