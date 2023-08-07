@@ -9,8 +9,8 @@ import (
 	"github.com/dirien/devpod-provider-equinix/pkg/options"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/loft-sh/devpod/pkg/client"
-	"github.com/loft-sh/devpod/pkg/log"
 	"github.com/loft-sh/devpod/pkg/ssh"
+	"github.com/loft-sh/log"
 	"github.com/packethost/packngo"
 	"github.com/pkg/errors"
 )
