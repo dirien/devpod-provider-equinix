@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/hashicorp/go-retryablehttp v0.7.4
-	github.com/loft-sh/devpod v0.3.4
+	github.com/loft-sh/devpod v0.3.6
 	github.com/loft-sh/log v0.0.0-20230802151259-7b546cf62355
 	github.com/packethost/packngo v0.30.0
 	github.com/pkg/errors v0.9.1
