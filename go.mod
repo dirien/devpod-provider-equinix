@@ -1,11 +1,11 @@
 module github.com/dirien/devpod-provider-equinix
 
-go 1.20
+go 1.21
 
 require (
 	github.com/hashicorp/go-retryablehttp v0.7.4
-	github.com/loft-sh/devpod v0.3.6
-	github.com/loft-sh/log v0.0.0-20230802151259-7b546cf62355
+	github.com/loft-sh/devpod v0.3.7
+	github.com/loft-sh/log v0.0.0-20230824104949-bd516c25712a
 	github.com/packethost/packngo v0.30.0
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.7.0
