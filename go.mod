@@ -9,7 +9,7 @@ require (
 	github.com/packethost/packngo v0.30.0
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.7.0
-	golang.org/x/crypto v0.12.0
+	golang.org/x/crypto v0.13.0
 )
 
 require (
@@ -41,9 +41,9 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 	golang.org/x/net v0.14.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
-	golang.org/x/term v0.11.0 // indirect
-	golang.org/x/text v0.12.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
+	golang.org/x/term v0.12.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
