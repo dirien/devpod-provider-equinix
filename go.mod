@@ -8,7 +8,7 @@ require (
 	github.com/loft-sh/log v0.0.0-20230824104949-bd516c25712a
 	github.com/packethost/packngo v0.30.0
 	github.com/pkg/errors v0.9.1
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.0
 	golang.org/x/crypto v0.14.0
 )
 
