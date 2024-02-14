@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/dirien/devpod-provider-equinix/pkg/equinix"
-	"github.com/loft-sh/devpod/pkg/provider"
 	"github.com/loft-sh/devpod/pkg/ssh"
 	"github.com/loft-sh/log"
 	"github.com/pkg/errors"
@@ -31,7 +30,6 @@ func NewCommandCmd() *cobra.Command {
 			return cmd.Run(
 				context.Background(),
 				equinixProvider,
-				provider.FromEnvironment(),
 				log.Default,
 			)
 		},
@@ -44,7 +42,6 @@ func NewCommandCmd() *cobra.Command {
 func (cmd *CommandCmd) Run(
 	ctx context.Context,
 	equinixProvider *equinix.EquinixProvider,
-	machine *provider.Machine,
 	logs log.Logger,
 ) error {
 	command := os.Getenv("COMMAND")
