@@ -40,5 +40,5 @@ func (cmd *DeleteCmd) Run(
 	equinixProvider *equinix.EquinixProvider,
 	logs log.Logger,
 ) error {
-	return equinix.Delete(equinixProvider)
+	return equinix.Delete(ctx, equinixProvider)
 }

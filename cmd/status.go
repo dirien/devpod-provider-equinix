@@ -43,7 +43,7 @@ func (cmd *StatusCmd) Run(
 	logs log.Logger,
 ) error {
 
-	status, err := equinix.Status(equinixProvider)
+	status, err := equinix.Status(ctx, equinixProvider)
 	if err != nil {
 		return err
 	}

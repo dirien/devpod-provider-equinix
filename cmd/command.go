@@ -56,7 +56,7 @@ func (cmd *CommandCmd) Run(
 	}
 
 	// get instance
-	instance, _, err := equinix.GetDevpodInstance(equinixProvider)
+	instance, _, err := equinix.GetDevpodInstance(ctx, equinixProvider)
 	if err != nil {
 		return err
 	}

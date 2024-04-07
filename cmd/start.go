@@ -40,5 +40,5 @@ func (cmd *StartCmd) Run(
 	equinixProvider *equinix.EquinixProvider,
 	logs log.Logger,
 ) error {
-	return equinix.Start(equinixProvider)
+	return equinix.Start(ctx, equinixProvider)
 }
