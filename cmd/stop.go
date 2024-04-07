@@ -40,5 +40,5 @@ func (cmd *StopCmd) Run(
 	equinixProvider *equinix.EquinixProvider,
 	logs log.Logger,
 ) error {
-	return equinix.Stop(equinixProvider)
+	return equinix.Stop(ctx, equinixProvider)
 }

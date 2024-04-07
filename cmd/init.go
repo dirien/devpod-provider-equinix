@@ -39,5 +39,5 @@ func (cmd *InitCmd) Run(
 	equinixProvider *equinix.EquinixProvider,
 	logs log.Logger,
 ) error {
-	return equinix.Init(equinixProvider)
+	return equinix.Init(ctx, equinixProvider)
 }

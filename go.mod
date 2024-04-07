@@ -3,10 +3,9 @@ module github.com/dirien/devpod-provider-equinix
 go 1.21
 
 require (
-	github.com/hashicorp/go-retryablehttp v0.7.5
+	github.com/equinix/equinix-sdk-go v0.35.1
 	github.com/loft-sh/devpod v0.5.4
-	github.com/loft-sh/log v0.0.0-20230824104949-bd516c25712a
-	github.com/packethost/packngo v0.31.0
+	github.com/loft-sh/log v0.0.0-20240219160058-26d83ffb46ac
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.8.0
 	golang.org/x/crypto v0.22.0
@@ -26,7 +25,6 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
-	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/k0kubun/go-ansi v0.0.0-20180517002512-3bf9e2903213 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
@@ -41,7 +39,6 @@ require (
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/tidwall/jsonc v0.3.2 // indirect
 	golang.org/x/sys v0.19.0 // indirect
 	golang.org/x/term v0.19.0 // indirect
