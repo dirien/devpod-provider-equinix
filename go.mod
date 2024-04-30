@@ -3,7 +3,7 @@ module github.com/dirien/devpod-provider-equinix
 go 1.21
 
 require (
-	github.com/equinix/equinix-sdk-go v0.36.0
+	github.com/equinix/equinix-sdk-go v0.37.0
 	github.com/loft-sh/devpod v0.5.5
 	github.com/loft-sh/log v0.0.0-20240219160058-26d83ffb46ac
 	github.com/pkg/errors v0.9.1
