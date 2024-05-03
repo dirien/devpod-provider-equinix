@@ -21,18 +21,19 @@ type VlanVirtualCircuitStatus string
 
 // List of VlanVirtualCircuit_status
 const (
-	VLANVIRTUALCIRCUITSTATUS_PENDING                  VlanVirtualCircuitStatus = "pending"
-	VLANVIRTUALCIRCUITSTATUS_WAITING_ON_CUSTOMER_VLAN VlanVirtualCircuitStatus = "waiting_on_customer_vlan"
-	VLANVIRTUALCIRCUITSTATUS_ACTIVATING               VlanVirtualCircuitStatus = "activating"
-	VLANVIRTUALCIRCUITSTATUS_CHANGING_VLAN            VlanVirtualCircuitStatus = "changing_vlan"
-	VLANVIRTUALCIRCUITSTATUS_DEACTIVATING             VlanVirtualCircuitStatus = "deactivating"
-	VLANVIRTUALCIRCUITSTATUS_DELETING                 VlanVirtualCircuitStatus = "deleting"
-	VLANVIRTUALCIRCUITSTATUS_ACTIVE                   VlanVirtualCircuitStatus = "active"
-	VLANVIRTUALCIRCUITSTATUS_EXPIRED                  VlanVirtualCircuitStatus = "expired"
-	VLANVIRTUALCIRCUITSTATUS_ACTIVATION_FAILED        VlanVirtualCircuitStatus = "activation_failed"
-	VLANVIRTUALCIRCUITSTATUS_CHANGING_VLAN_FAILED     VlanVirtualCircuitStatus = "changing_vlan_failed"
-	VLANVIRTUALCIRCUITSTATUS_DEACTIVATION_FAILED      VlanVirtualCircuitStatus = "deactivation_failed"
-	VLANVIRTUALCIRCUITSTATUS_DELETE_FAILED            VlanVirtualCircuitStatus = "delete_failed"
+	VLANVIRTUALCIRCUITSTATUS_PENDING                            VlanVirtualCircuitStatus = "pending"
+	VLANVIRTUALCIRCUITSTATUS_WAITING_ON_CUSTOMER_VLAN           VlanVirtualCircuitStatus = "waiting_on_customer_vlan"
+	VLANVIRTUALCIRCUITSTATUS_ACTIVATING                         VlanVirtualCircuitStatus = "activating"
+	VLANVIRTUALCIRCUITSTATUS_CHANGING_VLAN                      VlanVirtualCircuitStatus = "changing_vlan"
+	VLANVIRTUALCIRCUITSTATUS_DEACTIVATING                       VlanVirtualCircuitStatus = "deactivating"
+	VLANVIRTUALCIRCUITSTATUS_DELETING                           VlanVirtualCircuitStatus = "deleting"
+	VLANVIRTUALCIRCUITSTATUS_ACTIVE                             VlanVirtualCircuitStatus = "active"
+	VLANVIRTUALCIRCUITSTATUS_EXPIRED                            VlanVirtualCircuitStatus = "expired"
+	VLANVIRTUALCIRCUITSTATUS_ACTIVATION_FAILED                  VlanVirtualCircuitStatus = "activation_failed"
+	VLANVIRTUALCIRCUITSTATUS_CHANGING_VLAN_FAILED               VlanVirtualCircuitStatus = "changing_vlan_failed"
+	VLANVIRTUALCIRCUITSTATUS_DEACTIVATION_FAILED                VlanVirtualCircuitStatus = "deactivation_failed"
+	VLANVIRTUALCIRCUITSTATUS_DELETE_FAILED                      VlanVirtualCircuitStatus = "delete_failed"
+	VLANVIRTUALCIRCUITSTATUS_CONFIGURE_FABRIC_ROUTING_PROTOCOLS VlanVirtualCircuitStatus = "configure_fabric_routing_protocols"
 )
 
 // All allowed values of VlanVirtualCircuitStatus enum
@@ -49,6 +50,7 @@ var AllowedVlanVirtualCircuitStatusEnumValues = []VlanVirtualCircuitStatus{
 	"changing_vlan_failed",
 	"deactivation_failed",
 	"delete_failed",
+	"configure_fabric_routing_protocols",
 }
 
 func (v *VlanVirtualCircuitStatus) UnmarshalJSON(src []byte) error {

@@ -13,64 +13,102 @@ package metalv1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// checks if the MetroInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MetroInput{}
+// checks if the LineItemAdjustment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LineItemAdjustment{}
 
-// MetroInput struct for MetroInput
-type MetroInput struct {
-	// Metro code or ID of where the device should be provisioned in, or it can be instructed to create the device in the best available metro with `{ \"metro\": \"any\" }`. The special metro value of any means anywhere, any metro. When any is chosen in the request, the metro location is picked per our scheduling algorithms that favor the following factors: hardware reservation location (if requesting reserved hardware), ip reservations, spot instances, etc. The any keyword *does not* optimize for cost, this means that usage costs (instance, transfer, other features dependent on location) will vary. Please check metro value in response to see where the device was created. Either metro or facility must be provided.
-	Metro                string `json:"metro"`
+// LineItemAdjustment struct for LineItemAdjustment
+type LineItemAdjustment struct {
+	Amount               *float32 `json:"amount,omitempty"`
+	Description          *string  `json:"description,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _MetroInput MetroInput
+type _LineItemAdjustment LineItemAdjustment
 
-// NewMetroInput instantiates a new MetroInput object
+// NewLineItemAdjustment instantiates a new LineItemAdjustment object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetroInput(metro string) *MetroInput {
-	this := MetroInput{}
-	this.Metro = metro
+func NewLineItemAdjustment() *LineItemAdjustment {
+	this := LineItemAdjustment{}
 	return &this
 }
 
-// NewMetroInputWithDefaults instantiates a new MetroInput object
+// NewLineItemAdjustmentWithDefaults instantiates a new LineItemAdjustment object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMetroInputWithDefaults() *MetroInput {
-	this := MetroInput{}
+func NewLineItemAdjustmentWithDefaults() *LineItemAdjustment {
+	this := LineItemAdjustment{}
 	return &this
 }
 
-// GetMetro returns the Metro field value
-func (o *MetroInput) GetMetro() string {
-	if o == nil {
+// GetAmount returns the Amount field value if set, zero value otherwise.
+func (o *LineItemAdjustment) GetAmount() float32 {
+	if o == nil || IsNil(o.Amount) {
+		var ret float32
+		return ret
+	}
+	return *o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItemAdjustment) GetAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.Amount) {
+		return nil, false
+	}
+	return o.Amount, true
+}
+
+// HasAmount returns a boolean if a field has been set.
+func (o *LineItemAdjustment) HasAmount() bool {
+	if o != nil && !IsNil(o.Amount) {
+		return true
+	}
+
+	return false
+}
+
+// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+func (o *LineItemAdjustment) SetAmount(v float32) {
+	o.Amount = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *LineItemAdjustment) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Metro
+	return *o.Description
 }
 
-// GetMetroOk returns a tuple with the Metro field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroInput) GetMetroOk() (*string, bool) {
-	if o == nil {
+func (o *LineItemAdjustment) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Metro, true
+	return o.Description, true
 }
 
-// SetMetro sets field value
-func (o *MetroInput) SetMetro(v string) {
-	o.Metro = v
+// HasDescription returns a boolean if a field has been set.
+func (o *LineItemAdjustment) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
 }
 
-func (o MetroInput) MarshalJSON() ([]byte, error) {
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *LineItemAdjustment) SetDescription(v string) {
+	o.Description = &v
+}
+
+func (o LineItemAdjustment) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +116,14 @@ func (o MetroInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MetroInput) ToMap() (map[string]interface{}, error) {
+func (o LineItemAdjustment) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["metro"] = o.Metro
+	if !IsNil(o.Amount) {
+		toSerialize["amount"] = o.Amount
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,80 +132,60 @@ func (o MetroInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MetroInput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"metro",
-	}
+func (o *LineItemAdjustment) UnmarshalJSON(data []byte) (err error) {
+	varLineItemAdjustment := _LineItemAdjustment{}
 
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
+	err = json.Unmarshal(data, &varLineItemAdjustment)
 
 	if err != nil {
 		return err
 	}
 
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMetroInput := _MetroInput{}
-
-	err = json.Unmarshal(data, &varMetroInput)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MetroInput(varMetroInput)
+	*o = LineItemAdjustment(varLineItemAdjustment)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "metro")
+		delete(additionalProperties, "amount")
+		delete(additionalProperties, "description")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableMetroInput struct {
-	value *MetroInput
+type NullableLineItemAdjustment struct {
+	value *LineItemAdjustment
 	isSet bool
 }
 
-func (v NullableMetroInput) Get() *MetroInput {
+func (v NullableLineItemAdjustment) Get() *LineItemAdjustment {
 	return v.value
 }
 
-func (v *NullableMetroInput) Set(val *MetroInput) {
+func (v *NullableLineItemAdjustment) Set(val *LineItemAdjustment) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetroInput) IsSet() bool {
+func (v NullableLineItemAdjustment) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetroInput) Unset() {
+func (v *NullableLineItemAdjustment) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetroInput(val *MetroInput) *NullableMetroInput {
-	return &NullableMetroInput{value: val, isSet: true}
+func NewNullableLineItemAdjustment(val *LineItemAdjustment) *NullableLineItemAdjustment {
+	return &NullableLineItemAdjustment{value: val, isSet: true}
 }
 
-func (v NullableMetroInput) MarshalJSON() ([]byte, error) {
+func (v NullableLineItemAdjustment) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetroInput) UnmarshalJSON(src []byte) error {
+func (v *NullableLineItemAdjustment) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

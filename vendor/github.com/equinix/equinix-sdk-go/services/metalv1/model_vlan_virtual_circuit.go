@@ -31,14 +31,16 @@ type VlanVirtualCircuit struct {
 	Port        *InterconnectionPort               `json:"port,omitempty"`
 	Project     *Project                           `json:"project,omitempty"`
 	// For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.
-	Speed                *int64                    `json:"speed,omitempty"`
-	Status               *VlanVirtualCircuitStatus `json:"status,omitempty"`
-	Tags                 []string                  `json:"tags,omitempty"`
-	Type                 *VlanVirtualCircuitType   `json:"type,omitempty"`
-	VirtualNetwork       *Href                     `json:"virtual_network,omitempty"`
-	Vnid                 *int32                    `json:"vnid,omitempty"`
-	CreatedAt            *time.Time                `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time                `json:"updated_at,omitempty"`
+	Speed  *int64                    `json:"speed,omitempty"`
+	Status *VlanVirtualCircuitStatus `json:"status,omitempty"`
+	// This field is relevant if using the `shared_port_vlan_to_csp` interconnection type. Once activated on the CSP, this field should contain the resource name that the virtual circuit is connected to on the provider's end.
+	ProviderConnectionId *string                 `json:"provider_connection_id,omitempty"`
+	Tags                 []string                `json:"tags,omitempty"`
+	Type                 *VlanVirtualCircuitType `json:"type,omitempty"`
+	VirtualNetwork       *Href                   `json:"virtual_network,omitempty"`
+	Vnid                 *int32                  `json:"vnid,omitempty"`
+	CreatedAt            *time.Time              `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time              `json:"updated_at,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -396,6 +398,38 @@ func (o *VlanVirtualCircuit) SetStatus(v VlanVirtualCircuitStatus) {
 	o.Status = &v
 }
 
+// GetProviderConnectionId returns the ProviderConnectionId field value if set, zero value otherwise.
+func (o *VlanVirtualCircuit) GetProviderConnectionId() string {
+	if o == nil || IsNil(o.ProviderConnectionId) {
+		var ret string
+		return ret
+	}
+	return *o.ProviderConnectionId
+}
+
+// GetProviderConnectionIdOk returns a tuple with the ProviderConnectionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VlanVirtualCircuit) GetProviderConnectionIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ProviderConnectionId) {
+		return nil, false
+	}
+	return o.ProviderConnectionId, true
+}
+
+// HasProviderConnectionId returns a boolean if a field has been set.
+func (o *VlanVirtualCircuit) HasProviderConnectionId() bool {
+	if o != nil && !IsNil(o.ProviderConnectionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProviderConnectionId gets a reference to the given string and assigns it to the ProviderConnectionId field.
+func (o *VlanVirtualCircuit) SetProviderConnectionId(v string) {
+	o.ProviderConnectionId = &v
+}
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *VlanVirtualCircuit) GetTags() []string {
 	if o == nil || IsNil(o.Tags) {
@@ -628,6 +662,9 @@ func (o VlanVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
+	if !IsNil(o.ProviderConnectionId) {
+		toSerialize["provider_connection_id"] = o.ProviderConnectionId
+	}
 	if !IsNil(o.Tags) {
 		toSerialize["tags"] = o.Tags
 	}
@@ -678,6 +715,7 @@ func (o *VlanVirtualCircuit) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "project")
 		delete(additionalProperties, "speed")
 		delete(additionalProperties, "status")
+		delete(additionalProperties, "provider_connection_id")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "virtual_network")
