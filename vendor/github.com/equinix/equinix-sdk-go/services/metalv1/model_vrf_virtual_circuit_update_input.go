@@ -29,7 +29,7 @@ type VrfVirtualCircuitUpdateInput struct {
 	MetalIp *string `json:"metal_ip,omitempty"`
 	Name    *string `json:"name,omitempty"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
-	PeerAsn *int32 `json:"peer_asn,omitempty"`
+	PeerAsn *int64 `json:"peer_asn,omitempty"`
 	// Speed can be changed only if it is an interconnection on a Dedicated Port
 	Speed *string `json:"speed,omitempty"`
 	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.
@@ -218,9 +218,9 @@ func (o *VrfVirtualCircuitUpdateInput) SetName(v string) {
 }
 
 // GetPeerAsn returns the PeerAsn field value if set, zero value otherwise.
-func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int32 {
+func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int64 {
 	if o == nil || IsNil(o.PeerAsn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PeerAsn
@@ -228,7 +228,7 @@ func (o *VrfVirtualCircuitUpdateInput) GetPeerAsn() int32 {
 
 // GetPeerAsnOk returns a tuple with the PeerAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuitUpdateInput) GetPeerAsnOk() (*int32, bool) {
+func (o *VrfVirtualCircuitUpdateInput) GetPeerAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.PeerAsn) {
 		return nil, false
 	}
@@ -244,8 +244,8 @@ func (o *VrfVirtualCircuitUpdateInput) HasPeerAsn() bool {
 	return false
 }
 
-// SetPeerAsn gets a reference to the given int32 and assigns it to the PeerAsn field.
-func (o *VrfVirtualCircuitUpdateInput) SetPeerAsn(v int32) {
+// SetPeerAsn gets a reference to the given int64 and assigns it to the PeerAsn field.
+func (o *VrfVirtualCircuitUpdateInput) SetPeerAsn(v int64) {
 	o.PeerAsn = &v
 }
 

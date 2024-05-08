@@ -22,7 +22,7 @@ var _ MappedNullable = &BgpConfigRequestInput{}
 // BgpConfigRequestInput struct for BgpConfigRequestInput
 type BgpConfigRequestInput struct {
 	// Autonomous System Number for local BGP deployment.
-	Asn            int32                               `json:"asn"`
+	Asn            int64                               `json:"asn"`
 	DeploymentType BgpConfigRequestInputDeploymentType `json:"deployment_type"`
 	// The plaintext password to share between BGP neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character
 	Md5 *string `json:"md5,omitempty"`
@@ -37,7 +37,7 @@ type _BgpConfigRequestInput BgpConfigRequestInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpConfigRequestInput(asn int32, deploymentType BgpConfigRequestInputDeploymentType) *BgpConfigRequestInput {
+func NewBgpConfigRequestInput(asn int64, deploymentType BgpConfigRequestInputDeploymentType) *BgpConfigRequestInput {
 	this := BgpConfigRequestInput{}
 	this.Asn = asn
 	this.DeploymentType = deploymentType
@@ -53,9 +53,9 @@ func NewBgpConfigRequestInputWithDefaults() *BgpConfigRequestInput {
 }
 
 // GetAsn returns the Asn field value
-func (o *BgpConfigRequestInput) GetAsn() int32 {
+func (o *BgpConfigRequestInput) GetAsn() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *BgpConfigRequestInput) GetAsn() int32 {
 
 // GetAsnOk returns a tuple with the Asn field value
 // and a boolean to check if the value has been set.
-func (o *BgpConfigRequestInput) GetAsnOk() (*int32, bool) {
+func (o *BgpConfigRequestInput) GetAsnOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *BgpConfigRequestInput) GetAsnOk() (*int32, bool) {
 }
 
 // SetAsn sets field value
-func (o *BgpConfigRequestInput) SetAsn(v int32) {
+func (o *BgpConfigRequestInput) SetAsn(v int64) {
 	o.Asn = v
 }
 

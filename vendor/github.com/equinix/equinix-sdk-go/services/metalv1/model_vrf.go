@@ -34,7 +34,7 @@ type Vrf struct {
 	// Toggle BFD on dynamic bgp neighbors sessions
 	BgpDynamicNeighborsBfdEnabled *bool `json:"bgp_dynamic_neighbors_bfd_enabled,omitempty"`
 	// A 4-byte ASN associated with the VRF.
-	LocalAsn *int32 `json:"local_asn,omitempty"`
+	LocalAsn *int64 `json:"local_asn,omitempty"`
 	// Virtual circuits that are in the VRF
 	VirtualCircuits []VrfVirtualCircuit `json:"virtual_circuits,omitempty"`
 	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
@@ -297,9 +297,9 @@ func (o *Vrf) SetBgpDynamicNeighborsBfdEnabled(v bool) {
 }
 
 // GetLocalAsn returns the LocalAsn field value if set, zero value otherwise.
-func (o *Vrf) GetLocalAsn() int32 {
+func (o *Vrf) GetLocalAsn() int64 {
 	if o == nil || IsNil(o.LocalAsn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LocalAsn
@@ -307,7 +307,7 @@ func (o *Vrf) GetLocalAsn() int32 {
 
 // GetLocalAsnOk returns a tuple with the LocalAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Vrf) GetLocalAsnOk() (*int32, bool) {
+func (o *Vrf) GetLocalAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.LocalAsn) {
 		return nil, false
 	}
@@ -323,8 +323,8 @@ func (o *Vrf) HasLocalAsn() bool {
 	return false
 }
 
-// SetLocalAsn gets a reference to the given int32 and assigns it to the LocalAsn field.
-func (o *Vrf) SetLocalAsn(v int32) {
+// SetLocalAsn gets a reference to the given int64 and assigns it to the LocalAsn field.
+func (o *Vrf) SetLocalAsn(v int64) {
 	o.LocalAsn = &v
 }
 

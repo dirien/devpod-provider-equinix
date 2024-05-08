@@ -24,7 +24,7 @@ type BgpDynamicNeighborCreateInput struct {
 	// Network range of the dynamic BGP neighbor in CIDR format
 	BgpNeighborRange string `json:"bgp_neighbor_range"`
 	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn       int32    `json:"bgp_neighbor_asn"`
+	BgpNeighborAsn       int64    `json:"bgp_neighbor_asn"`
 	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -35,7 +35,7 @@ type _BgpDynamicNeighborCreateInput BgpDynamicNeighborCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int32) *BgpDynamicNeighborCreateInput {
+func NewBgpDynamicNeighborCreateInput(bgpNeighborRange string, bgpNeighborAsn int64) *BgpDynamicNeighborCreateInput {
 	this := BgpDynamicNeighborCreateInput{}
 	this.BgpNeighborRange = bgpNeighborRange
 	this.BgpNeighborAsn = bgpNeighborAsn
@@ -75,9 +75,9 @@ func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborRange(v string) {
 }
 
 // GetBgpNeighborAsn returns the BgpNeighborAsn field value
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -86,7 +86,7 @@ func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsn() int32 {
 
 // GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
+func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *BgpDynamicNeighborCreateInput) GetBgpNeighborAsnOk() (*int32, bool) {
 }
 
 // SetBgpNeighborAsn sets field value
-func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int32) {
+func (o *BgpDynamicNeighborCreateInput) SetBgpNeighborAsn(v int64) {
 	o.BgpNeighborAsn = v
 }
 

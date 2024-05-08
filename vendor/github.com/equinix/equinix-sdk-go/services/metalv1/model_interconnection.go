@@ -42,11 +42,12 @@ type Interconnection struct {
 	Status *string  `json:"status,omitempty"`
 	Tags   []string `json:"tags,omitempty"`
 	// This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.
-	Token                *string              `json:"token,omitempty"`
-	Type                 *InterconnectionType `json:"type,omitempty"`
-	CreatedAt            *time.Time           `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time           `json:"updated_at,omitempty"`
-	RequestedBy          *Href                `json:"requested_by,omitempty"`
+	Token                *string                        `json:"token,omitempty"`
+	Type                 *InterconnectionType           `json:"type,omitempty"`
+	FabricProvider       *InterconnectionFabricProvider `json:"fabric_provider,omitempty"`
+	CreatedAt            *time.Time                     `json:"created_at,omitempty"`
+	UpdatedAt            *time.Time                     `json:"updated_at,omitempty"`
+	RequestedBy          *Href                          `json:"requested_by,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -645,6 +646,38 @@ func (o *Interconnection) SetType(v InterconnectionType) {
 	o.Type = &v
 }
 
+// GetFabricProvider returns the FabricProvider field value if set, zero value otherwise.
+func (o *Interconnection) GetFabricProvider() InterconnectionFabricProvider {
+	if o == nil || IsNil(o.FabricProvider) {
+		var ret InterconnectionFabricProvider
+		return ret
+	}
+	return *o.FabricProvider
+}
+
+// GetFabricProviderOk returns a tuple with the FabricProvider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Interconnection) GetFabricProviderOk() (*InterconnectionFabricProvider, bool) {
+	if o == nil || IsNil(o.FabricProvider) {
+		return nil, false
+	}
+	return o.FabricProvider, true
+}
+
+// HasFabricProvider returns a boolean if a field has been set.
+func (o *Interconnection) HasFabricProvider() bool {
+	if o != nil && !IsNil(o.FabricProvider) {
+		return true
+	}
+
+	return false
+}
+
+// SetFabricProvider gets a reference to the given InterconnectionFabricProvider and assigns it to the FabricProvider field.
+func (o *Interconnection) SetFabricProvider(v InterconnectionFabricProvider) {
+	o.FabricProvider = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Interconnection) GetCreatedAt() time.Time {
 	if o == nil || IsNil(o.CreatedAt) {
@@ -805,6 +838,9 @@ func (o Interconnection) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
+	if !IsNil(o.FabricProvider) {
+		toSerialize["fabric_provider"] = o.FabricProvider
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -854,6 +890,7 @@ func (o *Interconnection) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "token")
 		delete(additionalProperties, "type")
+		delete(additionalProperties, "fabric_provider")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "updated_at")
 		delete(additionalProperties, "requested_by")

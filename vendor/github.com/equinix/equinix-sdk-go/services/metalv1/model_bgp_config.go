@@ -22,7 +22,7 @@ var _ MappedNullable = &BgpConfig{}
 // BgpConfig struct for BgpConfig
 type BgpConfig struct {
 	// Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.
-	Asn            *int32                   `json:"asn,omitempty"`
+	Asn            *int64                   `json:"asn,omitempty"`
 	CreatedAt      *time.Time               `json:"created_at,omitempty"`
 	DeploymentType *BgpConfigDeploymentType `json:"deployment_type,omitempty"`
 	Href           *string                  `json:"href,omitempty"`
@@ -67,9 +67,9 @@ func NewBgpConfigWithDefaults() *BgpConfig {
 }
 
 // GetAsn returns the Asn field value if set, zero value otherwise.
-func (o *BgpConfig) GetAsn() int32 {
+func (o *BgpConfig) GetAsn() int64 {
 	if o == nil || IsNil(o.Asn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Asn
@@ -77,7 +77,7 @@ func (o *BgpConfig) GetAsn() int32 {
 
 // GetAsnOk returns a tuple with the Asn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpConfig) GetAsnOk() (*int32, bool) {
+func (o *BgpConfig) GetAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.Asn) {
 		return nil, false
 	}
@@ -93,8 +93,8 @@ func (o *BgpConfig) HasAsn() bool {
 	return false
 }
 
-// SetAsn gets a reference to the given int32 and assigns it to the Asn field.
-func (o *BgpConfig) SetAsn(v int32) {
+// SetAsn gets a reference to the given int64 and assigns it to the Asn field.
+func (o *BgpConfig) SetAsn(v int64) {
 	o.Asn = &v
 }
 
