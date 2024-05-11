@@ -20,13 +20,24 @@ var _ MappedNullable = &LineItem{}
 
 // LineItem struct for LineItem
 type LineItem struct {
-	Amount               *float32 `json:"amount,omitempty"`
-	Currency             *string  `json:"currency,omitempty"`
-	Description          *string  `json:"description,omitempty"`
-	Details              *string  `json:"details,omitempty"`
-	Plan                 *Plan    `json:"plan,omitempty"`
-	Unit                 *string  `json:"unit,omitempty"`
-	UnitPrice            *float32 `json:"unit_price,omitempty"`
+	Amount      *float32       `json:"amount,omitempty"`
+	Currency    *string        `json:"currency,omitempty"`
+	Description *string        `json:"description,omitempty"`
+	Details     *string        `json:"details,omitempty"`
+	Plan        *Plan          `json:"plan,omitempty"`
+	Unit        *string        `json:"unit,omitempty"`
+	UnitPrice   *float32       `json:"unit_price,omitempty"`
+	Hostname    *string        `json:"hostname,omitempty"`
+	Location    *string        `json:"location,omitempty"`
+	ItemType    *string        `json:"item_type,omitempty"`
+	ServiceId   *string        `json:"service_id,omitempty"`
+	StartDate   *string        `json:"start_date,omitempty"`
+	EndDate     *string        `json:"end_date,omitempty"`
+	ProjectId   *string        `json:"project_id,omitempty"`
+	PlanId      *string        `json:"plan_id,omitempty"`
+	Project     *ProjectIdName `json:"project,omitempty"`
+	// Adjustments for the line item
+	Adjustments          []LineItemAdjustment `json:"adjustments,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -273,6 +284,326 @@ func (o *LineItem) SetUnitPrice(v float32) {
 	o.UnitPrice = &v
 }
 
+// GetHostname returns the Hostname field value if set, zero value otherwise.
+func (o *LineItem) GetHostname() string {
+	if o == nil || IsNil(o.Hostname) {
+		var ret string
+		return ret
+	}
+	return *o.Hostname
+}
+
+// GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetHostnameOk() (*string, bool) {
+	if o == nil || IsNil(o.Hostname) {
+		return nil, false
+	}
+	return o.Hostname, true
+}
+
+// HasHostname returns a boolean if a field has been set.
+func (o *LineItem) HasHostname() bool {
+	if o != nil && !IsNil(o.Hostname) {
+		return true
+	}
+
+	return false
+}
+
+// SetHostname gets a reference to the given string and assigns it to the Hostname field.
+func (o *LineItem) SetHostname(v string) {
+	o.Hostname = &v
+}
+
+// GetLocation returns the Location field value if set, zero value otherwise.
+func (o *LineItem) GetLocation() string {
+	if o == nil || IsNil(o.Location) {
+		var ret string
+		return ret
+	}
+	return *o.Location
+}
+
+// GetLocationOk returns a tuple with the Location field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetLocationOk() (*string, bool) {
+	if o == nil || IsNil(o.Location) {
+		return nil, false
+	}
+	return o.Location, true
+}
+
+// HasLocation returns a boolean if a field has been set.
+func (o *LineItem) HasLocation() bool {
+	if o != nil && !IsNil(o.Location) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocation gets a reference to the given string and assigns it to the Location field.
+func (o *LineItem) SetLocation(v string) {
+	o.Location = &v
+}
+
+// GetItemType returns the ItemType field value if set, zero value otherwise.
+func (o *LineItem) GetItemType() string {
+	if o == nil || IsNil(o.ItemType) {
+		var ret string
+		return ret
+	}
+	return *o.ItemType
+}
+
+// GetItemTypeOk returns a tuple with the ItemType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetItemTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.ItemType) {
+		return nil, false
+	}
+	return o.ItemType, true
+}
+
+// HasItemType returns a boolean if a field has been set.
+func (o *LineItem) HasItemType() bool {
+	if o != nil && !IsNil(o.ItemType) {
+		return true
+	}
+
+	return false
+}
+
+// SetItemType gets a reference to the given string and assigns it to the ItemType field.
+func (o *LineItem) SetItemType(v string) {
+	o.ItemType = &v
+}
+
+// GetServiceId returns the ServiceId field value if set, zero value otherwise.
+func (o *LineItem) GetServiceId() string {
+	if o == nil || IsNil(o.ServiceId) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceId
+}
+
+// GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetServiceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
+	}
+	return o.ServiceId, true
+}
+
+// HasServiceId returns a boolean if a field has been set.
+func (o *LineItem) HasServiceId() bool {
+	if o != nil && !IsNil(o.ServiceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
+func (o *LineItem) SetServiceId(v string) {
+	o.ServiceId = &v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *LineItem) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *LineItem) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *LineItem) SetStartDate(v string) {
+	o.StartDate = &v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *LineItem) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *LineItem) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *LineItem) SetEndDate(v string) {
+	o.EndDate = &v
+}
+
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *LineItem) GetProjectId() string {
+	if o == nil || IsNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetProjectIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ProjectId) {
+		return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *LineItem) HasProjectId() bool {
+	if o != nil && !IsNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *LineItem) SetProjectId(v string) {
+	o.ProjectId = &v
+}
+
+// GetPlanId returns the PlanId field value if set, zero value otherwise.
+func (o *LineItem) GetPlanId() string {
+	if o == nil || IsNil(o.PlanId) {
+		var ret string
+		return ret
+	}
+	return *o.PlanId
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetPlanIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PlanId) {
+		return nil, false
+	}
+	return o.PlanId, true
+}
+
+// HasPlanId returns a boolean if a field has been set.
+func (o *LineItem) HasPlanId() bool {
+	if o != nil && !IsNil(o.PlanId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
+func (o *LineItem) SetPlanId(v string) {
+	o.PlanId = &v
+}
+
+// GetProject returns the Project field value if set, zero value otherwise.
+func (o *LineItem) GetProject() ProjectIdName {
+	if o == nil || IsNil(o.Project) {
+		var ret ProjectIdName
+		return ret
+	}
+	return *o.Project
+}
+
+// GetProjectOk returns a tuple with the Project field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetProjectOk() (*ProjectIdName, bool) {
+	if o == nil || IsNil(o.Project) {
+		return nil, false
+	}
+	return o.Project, true
+}
+
+// HasProject returns a boolean if a field has been set.
+func (o *LineItem) HasProject() bool {
+	if o != nil && !IsNil(o.Project) {
+		return true
+	}
+
+	return false
+}
+
+// SetProject gets a reference to the given ProjectIdName and assigns it to the Project field.
+func (o *LineItem) SetProject(v ProjectIdName) {
+	o.Project = &v
+}
+
+// GetAdjustments returns the Adjustments field value if set, zero value otherwise.
+func (o *LineItem) GetAdjustments() []LineItemAdjustment {
+	if o == nil || IsNil(o.Adjustments) {
+		var ret []LineItemAdjustment
+		return ret
+	}
+	return o.Adjustments
+}
+
+// GetAdjustmentsOk returns a tuple with the Adjustments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LineItem) GetAdjustmentsOk() ([]LineItemAdjustment, bool) {
+	if o == nil || IsNil(o.Adjustments) {
+		return nil, false
+	}
+	return o.Adjustments, true
+}
+
+// HasAdjustments returns a boolean if a field has been set.
+func (o *LineItem) HasAdjustments() bool {
+	if o != nil && !IsNil(o.Adjustments) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustments gets a reference to the given []LineItemAdjustment and assigns it to the Adjustments field.
+func (o *LineItem) SetAdjustments(v []LineItemAdjustment) {
+	o.Adjustments = v
+}
+
 func (o LineItem) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -304,6 +635,36 @@ func (o LineItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.UnitPrice) {
 		toSerialize["unit_price"] = o.UnitPrice
 	}
+	if !IsNil(o.Hostname) {
+		toSerialize["hostname"] = o.Hostname
+	}
+	if !IsNil(o.Location) {
+		toSerialize["location"] = o.Location
+	}
+	if !IsNil(o.ItemType) {
+		toSerialize["item_type"] = o.ItemType
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
+	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
+	if !IsNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
+	}
+	if !IsNil(o.PlanId) {
+		toSerialize["plan_id"] = o.PlanId
+	}
+	if !IsNil(o.Project) {
+		toSerialize["project"] = o.Project
+	}
+	if !IsNil(o.Adjustments) {
+		toSerialize["adjustments"] = o.Adjustments
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -333,6 +694,16 @@ func (o *LineItem) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "plan")
 		delete(additionalProperties, "unit")
 		delete(additionalProperties, "unit_price")
+		delete(additionalProperties, "hostname")
+		delete(additionalProperties, "location")
+		delete(additionalProperties, "item_type")
+		delete(additionalProperties, "service_id")
+		delete(additionalProperties, "start_date")
+		delete(additionalProperties, "end_date")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "plan_id")
+		delete(additionalProperties, "project")
+		delete(additionalProperties, "adjustments")
 		o.AdditionalProperties = additionalProperties
 	}
 

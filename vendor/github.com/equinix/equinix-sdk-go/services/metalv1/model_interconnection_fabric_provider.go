@@ -16,153 +16,101 @@ import (
 	"fmt"
 )
 
-// checks if the MetroInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MetroInput{}
-
-// MetroInput struct for MetroInput
-type MetroInput struct {
-	// Metro code or ID of where the device should be provisioned in, or it can be instructed to create the device in the best available metro with `{ \"metro\": \"any\" }`. The special metro value of any means anywhere, any metro. When any is chosen in the request, the metro location is picked per our scheduling algorithms that favor the following factors: hardware reservation location (if requesting reserved hardware), ip reservations, spot instances, etc. The any keyword *does not* optimize for cost, this means that usage costs (instance, transfer, other features dependent on location) will vary. Please check metro value in response to see where the device was created. Either metro or facility must be provided.
-	Metro                string `json:"metro"`
-	AdditionalProperties map[string]interface{}
+// InterconnectionFabricProvider - Configuration information for connecting to external cloud service provider. Only available if the fabric_provider param was used when creating the interconnection.
+type InterconnectionFabricProvider struct {
+	AWSFabricProvider *AWSFabricProvider
 }
 
-type _MetroInput MetroInput
-
-// NewMetroInput instantiates a new MetroInput object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMetroInput(metro string) *MetroInput {
-	this := MetroInput{}
-	this.Metro = metro
-	return &this
-}
-
-// NewMetroInputWithDefaults instantiates a new MetroInput object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewMetroInputWithDefaults() *MetroInput {
-	this := MetroInput{}
-	return &this
-}
-
-// GetMetro returns the Metro field value
-func (o *MetroInput) GetMetro() string {
-	if o == nil {
-		var ret string
-		return ret
+// AWSFabricProviderAsInterconnectionFabricProvider is a convenience function that returns AWSFabricProvider wrapped in InterconnectionFabricProvider
+func AWSFabricProviderAsInterconnectionFabricProvider(v *AWSFabricProvider) InterconnectionFabricProvider {
+	return InterconnectionFabricProvider{
+		AWSFabricProvider: v,
 	}
-
-	return o.Metro
 }
 
-// GetMetroOk returns a tuple with the Metro field value
-// and a boolean to check if the value has been set.
-func (o *MetroInput) GetMetroOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Metro, true
-}
-
-// SetMetro sets field value
-func (o *MetroInput) SetMetro(v string) {
-	o.Metro = v
-}
-
-func (o MetroInput) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
-	if err != nil {
-		return []byte{}, err
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o MetroInput) ToMap() (map[string]interface{}, error) {
-	toSerialize := map[string]interface{}{}
-	toSerialize["metro"] = o.Metro
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
-	return toSerialize, nil
-}
-
-func (o *MetroInput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"metro",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *InterconnectionFabricProvider) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into AWSFabricProvider
+	err = newStrictDecoder(data).Decode(&dst.AWSFabricProvider)
+	if err == nil {
+		jsonAWSFabricProvider, _ := json.Marshal(dst.AWSFabricProvider)
+		if string(jsonAWSFabricProvider) == "{}" { // empty struct
+			dst.AWSFabricProvider = nil
+		} else {
+			match++
 		}
+	} else {
+		dst.AWSFabricProvider = nil
 	}
 
-	varMetroInput := _MetroInput{}
+	if match > 1 { // more than 1 match
+		// reset to nil
+		dst.AWSFabricProvider = nil
 
-	err = json.Unmarshal(data, &varMetroInput)
-
-	if err != nil {
-		return err
+		return fmt.Errorf("data matches more than one schema in oneOf(InterconnectionFabricProvider)")
+	} else if match == 1 {
+		return nil // exactly one match
+	} else { // no match
+		return fmt.Errorf("data failed to match schemas in oneOf(InterconnectionFabricProvider)")
 	}
-
-	*o = MetroInput(varMetroInput)
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "metro")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
-type NullableMetroInput struct {
-	value *MetroInput
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src InterconnectionFabricProvider) MarshalJSON() ([]byte, error) {
+	if src.AWSFabricProvider != nil {
+		return json.Marshal(&src.AWSFabricProvider)
+	}
+
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *InterconnectionFabricProvider) GetActualInstance() interface{} {
+	if obj == nil {
+		return nil
+	}
+	if obj.AWSFabricProvider != nil {
+		return obj.AWSFabricProvider
+	}
+
+	// all schemas are nil
+	return nil
+}
+
+type NullableInterconnectionFabricProvider struct {
+	value *InterconnectionFabricProvider
 	isSet bool
 }
 
-func (v NullableMetroInput) Get() *MetroInput {
+func (v NullableInterconnectionFabricProvider) Get() *InterconnectionFabricProvider {
 	return v.value
 }
 
-func (v *NullableMetroInput) Set(val *MetroInput) {
+func (v *NullableInterconnectionFabricProvider) Set(val *InterconnectionFabricProvider) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetroInput) IsSet() bool {
+func (v NullableInterconnectionFabricProvider) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetroInput) Unset() {
+func (v *NullableInterconnectionFabricProvider) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetroInput(val *MetroInput) *NullableMetroInput {
-	return &NullableMetroInput{value: val, isSet: true}
+func NewNullableInterconnectionFabricProvider(val *InterconnectionFabricProvider) *NullableInterconnectionFabricProvider {
+	return &NullableInterconnectionFabricProvider{value: val, isSet: true}
 }
 
-func (v NullableMetroInput) MarshalJSON() ([]byte, error) {
+func (v NullableInterconnectionFabricProvider) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetroInput) UnmarshalJSON(src []byte) error {
+func (v *NullableInterconnectionFabricProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

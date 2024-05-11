@@ -31,7 +31,7 @@ type VrfVirtualCircuitCreateInput struct {
 	Name    *string `json:"name,omitempty"`
 	NniVlan int32   `json:"nni_vlan"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
-	PeerAsn   int32  `json:"peer_asn"`
+	PeerAsn   int64  `json:"peer_asn"`
 	ProjectId string `json:"project_id"`
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *string `json:"speed,omitempty"`
@@ -49,7 +49,7 @@ type _VrfVirtualCircuitCreateInput VrfVirtualCircuitCreateInput
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int32, projectId string, subnet string, vrf string) *VrfVirtualCircuitCreateInput {
+func NewVrfVirtualCircuitCreateInput(nniVlan int32, peerAsn int64, projectId string, subnet string, vrf string) *VrfVirtualCircuitCreateInput {
 	this := VrfVirtualCircuitCreateInput{}
 	this.NniVlan = nniVlan
 	this.PeerAsn = peerAsn
@@ -263,9 +263,9 @@ func (o *VrfVirtualCircuitCreateInput) SetNniVlan(v int32) {
 }
 
 // GetPeerAsn returns the PeerAsn field value
-func (o *VrfVirtualCircuitCreateInput) GetPeerAsn() int32 {
+func (o *VrfVirtualCircuitCreateInput) GetPeerAsn() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -274,7 +274,7 @@ func (o *VrfVirtualCircuitCreateInput) GetPeerAsn() int32 {
 
 // GetPeerAsnOk returns a tuple with the PeerAsn field value
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuitCreateInput) GetPeerAsnOk() (*int32, bool) {
+func (o *VrfVirtualCircuitCreateInput) GetPeerAsnOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -282,7 +282,7 @@ func (o *VrfVirtualCircuitCreateInput) GetPeerAsnOk() (*int32, bool) {
 }
 
 // SetPeerAsn sets field value
-func (o *VrfVirtualCircuitCreateInput) SetPeerAsn(v int32) {
+func (o *VrfVirtualCircuitCreateInput) SetPeerAsn(v int64) {
 	o.PeerAsn = v
 }
 

@@ -34,7 +34,7 @@ type VrfVirtualCircuit struct {
 	Port    *InterconnectionPort `json:"port,omitempty"`
 	NniVlan *int32               `json:"nni_vlan,omitempty"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
-	PeerAsn *int32   `json:"peer_asn,omitempty"`
+	PeerAsn *int64   `json:"peer_asn,omitempty"`
 	Project *Project `json:"project,omitempty"`
 	// integer representing bps speed
 	Speed  *int64                   `json:"speed,omitempty"`
@@ -326,9 +326,9 @@ func (o *VrfVirtualCircuit) SetNniVlan(v int32) {
 }
 
 // GetPeerAsn returns the PeerAsn field value if set, zero value otherwise.
-func (o *VrfVirtualCircuit) GetPeerAsn() int32 {
+func (o *VrfVirtualCircuit) GetPeerAsn() int64 {
 	if o == nil || IsNil(o.PeerAsn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PeerAsn
@@ -336,7 +336,7 @@ func (o *VrfVirtualCircuit) GetPeerAsn() int32 {
 
 // GetPeerAsnOk returns a tuple with the PeerAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfVirtualCircuit) GetPeerAsnOk() (*int32, bool) {
+func (o *VrfVirtualCircuit) GetPeerAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.PeerAsn) {
 		return nil, false
 	}
@@ -352,8 +352,8 @@ func (o *VrfVirtualCircuit) HasPeerAsn() bool {
 	return false
 }
 
-// SetPeerAsn gets a reference to the given int32 and assigns it to the PeerAsn field.
-func (o *VrfVirtualCircuit) SetPeerAsn(v int32) {
+// SetPeerAsn gets a reference to the given int64 and assigns it to the PeerAsn field.
+func (o *VrfVirtualCircuit) SetPeerAsn(v int64) {
 	o.PeerAsn = &v
 }
 

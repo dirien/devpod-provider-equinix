@@ -24,7 +24,7 @@ type BgpDynamicNeighbor struct {
 	// The unique identifier for the resource
 	Id *string `json:"id,omitempty"`
 	// The ASN of the dynamic BGP neighbor
-	BgpNeighborAsn *int32 `json:"bgp_neighbor_asn,omitempty"`
+	BgpNeighborAsn *int64 `json:"bgp_neighbor_asn,omitempty"`
 	// Network range of the dynamic BGP neighbor in CIDR format
 	BgpNeighborRange     *string                  `json:"bgp_neighbor_range,omitempty"`
 	MetalGateway         *VrfMetalGateway         `json:"metal_gateway,omitempty"`
@@ -89,9 +89,9 @@ func (o *BgpDynamicNeighbor) SetId(v string) {
 }
 
 // GetBgpNeighborAsn returns the BgpNeighborAsn field value if set, zero value otherwise.
-func (o *BgpDynamicNeighbor) GetBgpNeighborAsn() int32 {
+func (o *BgpDynamicNeighbor) GetBgpNeighborAsn() int64 {
 	if o == nil || IsNil(o.BgpNeighborAsn) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BgpNeighborAsn
@@ -99,7 +99,7 @@ func (o *BgpDynamicNeighbor) GetBgpNeighborAsn() int32 {
 
 // GetBgpNeighborAsnOk returns a tuple with the BgpNeighborAsn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BgpDynamicNeighbor) GetBgpNeighborAsnOk() (*int32, bool) {
+func (o *BgpDynamicNeighbor) GetBgpNeighborAsnOk() (*int64, bool) {
 	if o == nil || IsNil(o.BgpNeighborAsn) {
 		return nil, false
 	}
@@ -115,8 +115,8 @@ func (o *BgpDynamicNeighbor) HasBgpNeighborAsn() bool {
 	return false
 }
 
-// SetBgpNeighborAsn gets a reference to the given int32 and assigns it to the BgpNeighborAsn field.
-func (o *BgpDynamicNeighbor) SetBgpNeighborAsn(v int32) {
+// SetBgpNeighborAsn gets a reference to the given int64 and assigns it to the BgpNeighborAsn field.
+func (o *BgpDynamicNeighbor) SetBgpNeighborAsn(v int64) {
 	o.BgpNeighborAsn = &v
 }
 

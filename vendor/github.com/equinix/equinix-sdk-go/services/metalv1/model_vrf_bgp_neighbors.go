@@ -13,64 +13,69 @@ package metalv1
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// checks if the MetroInput type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &MetroInput{}
+// checks if the VrfBGPNeighbors type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfBGPNeighbors{}
 
-// MetroInput struct for MetroInput
-type MetroInput struct {
-	// Metro code or ID of where the device should be provisioned in, or it can be instructed to create the device in the best available metro with `{ \"metro\": \"any\" }`. The special metro value of any means anywhere, any metro. When any is chosen in the request, the metro location is picked per our scheduling algorithms that favor the following factors: hardware reservation location (if requesting reserved hardware), ip reservations, spot instances, etc. The any keyword *does not* optimize for cost, this means that usage costs (instance, transfer, other features dependent on location) will vary. Please check metro value in response to see where the device was created. Either metro or facility must be provided.
-	Metro                string `json:"metro"`
+// VrfBGPNeighbors struct for VrfBGPNeighbors
+type VrfBGPNeighbors struct {
+	BgpNeighbors         map[string]interface{} `json:"bgp_neighbors,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _MetroInput MetroInput
+type _VrfBGPNeighbors VrfBGPNeighbors
 
-// NewMetroInput instantiates a new MetroInput object
+// NewVrfBGPNeighbors instantiates a new VrfBGPNeighbors object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetroInput(metro string) *MetroInput {
-	this := MetroInput{}
-	this.Metro = metro
+func NewVrfBGPNeighbors() *VrfBGPNeighbors {
+	this := VrfBGPNeighbors{}
 	return &this
 }
 
-// NewMetroInputWithDefaults instantiates a new MetroInput object
+// NewVrfBGPNeighborsWithDefaults instantiates a new VrfBGPNeighbors object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMetroInputWithDefaults() *MetroInput {
-	this := MetroInput{}
+func NewVrfBGPNeighborsWithDefaults() *VrfBGPNeighbors {
+	this := VrfBGPNeighbors{}
 	return &this
 }
 
-// GetMetro returns the Metro field value
-func (o *MetroInput) GetMetro() string {
-	if o == nil {
-		var ret string
+// GetBgpNeighbors returns the BgpNeighbors field value if set, zero value otherwise.
+func (o *VrfBGPNeighbors) GetBgpNeighbors() map[string]interface{} {
+	if o == nil || IsNil(o.BgpNeighbors) {
+		var ret map[string]interface{}
 		return ret
 	}
-
-	return o.Metro
+	return o.BgpNeighbors
 }
 
-// GetMetroOk returns a tuple with the Metro field value
+// GetBgpNeighborsOk returns a tuple with the BgpNeighbors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetroInput) GetMetroOk() (*string, bool) {
-	if o == nil {
-		return nil, false
+func (o *VrfBGPNeighbors) GetBgpNeighborsOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.BgpNeighbors) {
+		return map[string]interface{}{}, false
 	}
-	return &o.Metro, true
+	return o.BgpNeighbors, true
 }
 
-// SetMetro sets field value
-func (o *MetroInput) SetMetro(v string) {
-	o.Metro = v
+// HasBgpNeighbors returns a boolean if a field has been set.
+func (o *VrfBGPNeighbors) HasBgpNeighbors() bool {
+	if o != nil && !IsNil(o.BgpNeighbors) {
+		return true
+	}
+
+	return false
 }
 
-func (o MetroInput) MarshalJSON() ([]byte, error) {
+// SetBgpNeighbors gets a reference to the given map[string]interface{} and assigns it to the BgpNeighbors field.
+func (o *VrfBGPNeighbors) SetBgpNeighbors(v map[string]interface{}) {
+	o.BgpNeighbors = v
+}
+
+func (o VrfBGPNeighbors) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -78,9 +83,11 @@ func (o MetroInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o MetroInput) ToMap() (map[string]interface{}, error) {
+func (o VrfBGPNeighbors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["metro"] = o.Metro
+	if !IsNil(o.BgpNeighbors) {
+		toSerialize["bgp_neighbors"] = o.BgpNeighbors
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -89,80 +96,59 @@ func (o MetroInput) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *MetroInput) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"metro",
-	}
+func (o *VrfBGPNeighbors) UnmarshalJSON(data []byte) (err error) {
+	varVrfBGPNeighbors := _VrfBGPNeighbors{}
 
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
+	err = json.Unmarshal(data, &varVrfBGPNeighbors)
 
 	if err != nil {
 		return err
 	}
 
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMetroInput := _MetroInput{}
-
-	err = json.Unmarshal(data, &varMetroInput)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MetroInput(varMetroInput)
+	*o = VrfBGPNeighbors(varVrfBGPNeighbors)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "metro")
+		delete(additionalProperties, "bgp_neighbors")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableMetroInput struct {
-	value *MetroInput
+type NullableVrfBGPNeighbors struct {
+	value *VrfBGPNeighbors
 	isSet bool
 }
 
-func (v NullableMetroInput) Get() *MetroInput {
+func (v NullableVrfBGPNeighbors) Get() *VrfBGPNeighbors {
 	return v.value
 }
 
-func (v *NullableMetroInput) Set(val *MetroInput) {
+func (v *NullableVrfBGPNeighbors) Set(val *VrfBGPNeighbors) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetroInput) IsSet() bool {
+func (v NullableVrfBGPNeighbors) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetroInput) Unset() {
+func (v *NullableVrfBGPNeighbors) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetroInput(val *MetroInput) *NullableMetroInput {
-	return &NullableMetroInput{value: val, isSet: true}
+func NewNullableVrfBGPNeighbors(val *VrfBGPNeighbors) *NullableVrfBGPNeighbors {
+	return &NullableVrfBGPNeighbors{value: val, isSet: true}
 }
 
-func (v NullableMetroInput) MarshalJSON() ([]byte, error) {
+func (v NullableVrfBGPNeighbors) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetroInput) UnmarshalJSON(src []byte) error {
+func (v *NullableVrfBGPNeighbors) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

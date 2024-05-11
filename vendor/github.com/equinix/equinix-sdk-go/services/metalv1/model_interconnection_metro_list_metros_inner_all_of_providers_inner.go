@@ -23,6 +23,8 @@ type InterconnectionMetroListMetrosInnerAllOfProvidersInner struct {
 	Type                 *string  `json:"type,omitempty"`
 	Name                 *string  `json:"name,omitempty"`
 	Locations            []string `json:"locations,omitempty"`
+	Bandwidths           []int32  `json:"bandwidths,omitempty"`
+	Features             []string `json:"features,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -141,6 +143,70 @@ func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) SetLocations(v 
 	o.Locations = v
 }
 
+// GetBandwidths returns the Bandwidths field value if set, zero value otherwise.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) GetBandwidths() []int32 {
+	if o == nil || IsNil(o.Bandwidths) {
+		var ret []int32
+		return ret
+	}
+	return o.Bandwidths
+}
+
+// GetBandwidthsOk returns a tuple with the Bandwidths field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) GetBandwidthsOk() ([]int32, bool) {
+	if o == nil || IsNil(o.Bandwidths) {
+		return nil, false
+	}
+	return o.Bandwidths, true
+}
+
+// HasBandwidths returns a boolean if a field has been set.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) HasBandwidths() bool {
+	if o != nil && !IsNil(o.Bandwidths) {
+		return true
+	}
+
+	return false
+}
+
+// SetBandwidths gets a reference to the given []int32 and assigns it to the Bandwidths field.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) SetBandwidths(v []int32) {
+	o.Bandwidths = v
+}
+
+// GetFeatures returns the Features field value if set, zero value otherwise.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) GetFeatures() []string {
+	if o == nil || IsNil(o.Features) {
+		var ret []string
+		return ret
+	}
+	return o.Features
+}
+
+// GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) GetFeaturesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Features) {
+		return nil, false
+	}
+	return o.Features, true
+}
+
+// HasFeatures returns a boolean if a field has been set.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) HasFeatures() bool {
+	if o != nil && !IsNil(o.Features) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatures gets a reference to the given []string and assigns it to the Features field.
+func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) SetFeatures(v []string) {
+	o.Features = v
+}
+
 func (o InterconnectionMetroListMetrosInnerAllOfProvidersInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -159,6 +225,12 @@ func (o InterconnectionMetroListMetrosInnerAllOfProvidersInner) ToMap() (map[str
 	}
 	if !IsNil(o.Locations) {
 		toSerialize["locations"] = o.Locations
+	}
+	if !IsNil(o.Bandwidths) {
+		toSerialize["bandwidths"] = o.Bandwidths
+	}
+	if !IsNil(o.Features) {
+		toSerialize["features"] = o.Features
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -185,6 +257,8 @@ func (o *InterconnectionMetroListMetrosInnerAllOfProvidersInner) UnmarshalJSON(d
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "locations")
+		delete(additionalProperties, "bandwidths")
+		delete(additionalProperties, "features")
 		o.AdditionalProperties = additionalProperties
 	}
 
