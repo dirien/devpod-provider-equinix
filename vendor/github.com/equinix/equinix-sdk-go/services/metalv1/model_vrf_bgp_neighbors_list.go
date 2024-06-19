@@ -15,101 +15,67 @@ import (
 	"encoding/json"
 )
 
-// checks if the VrfLearnedRoutes type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VrfLearnedRoutes{}
+// checks if the VrfBGPNeighborsList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VrfBGPNeighborsList{}
 
-// VrfLearnedRoutes struct for VrfLearnedRoutes
-type VrfLearnedRoutes struct {
-	Prefix *string `json:"prefix,omitempty"`
-	// The ASN of the peer that advertised the prefix.
-	OriginAs             *int64 `json:"origin_as,omitempty"`
+// VrfBGPNeighborsList struct for VrfBGPNeighborsList
+type VrfBGPNeighborsList struct {
+	BgpNeighbors         []VrfBGPNeighbors `json:"bgp_neighbors,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _VrfLearnedRoutes VrfLearnedRoutes
+type _VrfBGPNeighborsList VrfBGPNeighborsList
 
-// NewVrfLearnedRoutes instantiates a new VrfLearnedRoutes object
+// NewVrfBGPNeighborsList instantiates a new VrfBGPNeighborsList object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfLearnedRoutes() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewVrfBGPNeighborsList() *VrfBGPNeighborsList {
+	this := VrfBGPNeighborsList{}
 	return &this
 }
 
-// NewVrfLearnedRoutesWithDefaults instantiates a new VrfLearnedRoutes object
+// NewVrfBGPNeighborsListWithDefaults instantiates a new VrfBGPNeighborsList object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVrfLearnedRoutesWithDefaults() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewVrfBGPNeighborsListWithDefaults() *VrfBGPNeighborsList {
+	this := VrfBGPNeighborsList{}
 	return &this
 }
 
-// GetPrefix returns the Prefix field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetPrefix() string {
-	if o == nil || IsNil(o.Prefix) {
-		var ret string
+// GetBgpNeighbors returns the BgpNeighbors field value if set, zero value otherwise.
+func (o *VrfBGPNeighborsList) GetBgpNeighbors() []VrfBGPNeighbors {
+	if o == nil || IsNil(o.BgpNeighbors) {
+		var ret []VrfBGPNeighbors
 		return ret
 	}
-	return *o.Prefix
+	return o.BgpNeighbors
 }
 
-// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
+// GetBgpNeighborsOk returns a tuple with the BgpNeighbors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.Prefix) {
+func (o *VrfBGPNeighborsList) GetBgpNeighborsOk() ([]VrfBGPNeighbors, bool) {
+	if o == nil || IsNil(o.BgpNeighbors) {
 		return nil, false
 	}
-	return o.Prefix, true
+	return o.BgpNeighbors, true
 }
 
-// HasPrefix returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasPrefix() bool {
-	if o != nil && !IsNil(o.Prefix) {
+// HasBgpNeighbors returns a boolean if a field has been set.
+func (o *VrfBGPNeighborsList) HasBgpNeighbors() bool {
+	if o != nil && !IsNil(o.BgpNeighbors) {
 		return true
 	}
 
 	return false
 }
 
-// SetPrefix gets a reference to the given string and assigns it to the Prefix field.
-func (o *VrfLearnedRoutes) SetPrefix(v string) {
-	o.Prefix = &v
+// SetBgpNeighbors gets a reference to the given []VrfBGPNeighbors and assigns it to the BgpNeighbors field.
+func (o *VrfBGPNeighborsList) SetBgpNeighbors(v []VrfBGPNeighbors) {
+	o.BgpNeighbors = v
 }
 
-// GetOriginAs returns the OriginAs field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetOriginAs() int64 {
-	if o == nil || IsNil(o.OriginAs) {
-		var ret int64
-		return ret
-	}
-	return *o.OriginAs
-}
-
-// GetOriginAsOk returns a tuple with the OriginAs field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetOriginAsOk() (*int64, bool) {
-	if o == nil || IsNil(o.OriginAs) {
-		return nil, false
-	}
-	return o.OriginAs, true
-}
-
-// HasOriginAs returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasOriginAs() bool {
-	if o != nil && !IsNil(o.OriginAs) {
-		return true
-	}
-
-	return false
-}
-
-// SetOriginAs gets a reference to the given int64 and assigns it to the OriginAs field.
-func (o *VrfLearnedRoutes) SetOriginAs(v int64) {
-	o.OriginAs = &v
-}
-
-func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (o VrfBGPNeighborsList) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -117,13 +83,10 @@ func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
+func (o VrfBGPNeighborsList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
-	}
-	if !IsNil(o.OriginAs) {
-		toSerialize["origin_as"] = o.OriginAs
+	if !IsNil(o.BgpNeighbors) {
+		toSerialize["bgp_neighbors"] = o.BgpNeighbors
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -133,60 +96,59 @@ func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VrfLearnedRoutes) UnmarshalJSON(data []byte) (err error) {
-	varVrfLearnedRoutes := _VrfLearnedRoutes{}
+func (o *VrfBGPNeighborsList) UnmarshalJSON(data []byte) (err error) {
+	varVrfBGPNeighborsList := _VrfBGPNeighborsList{}
 
-	err = json.Unmarshal(data, &varVrfLearnedRoutes)
+	err = json.Unmarshal(data, &varVrfBGPNeighborsList)
 
 	if err != nil {
 		return err
 	}
 
-	*o = VrfLearnedRoutes(varVrfLearnedRoutes)
+	*o = VrfBGPNeighborsList(varVrfBGPNeighborsList)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "prefix")
-		delete(additionalProperties, "origin_as")
+		delete(additionalProperties, "bgp_neighbors")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableVrfLearnedRoutes struct {
-	value *VrfLearnedRoutes
+type NullableVrfBGPNeighborsList struct {
+	value *VrfBGPNeighborsList
 	isSet bool
 }
 
-func (v NullableVrfLearnedRoutes) Get() *VrfLearnedRoutes {
+func (v NullableVrfBGPNeighborsList) Get() *VrfBGPNeighborsList {
 	return v.value
 }
 
-func (v *NullableVrfLearnedRoutes) Set(val *VrfLearnedRoutes) {
+func (v *NullableVrfBGPNeighborsList) Set(val *VrfBGPNeighborsList) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVrfLearnedRoutes) IsSet() bool {
+func (v NullableVrfBGPNeighborsList) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVrfLearnedRoutes) Unset() {
+func (v *NullableVrfBGPNeighborsList) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVrfLearnedRoutes(val *VrfLearnedRoutes) *NullableVrfLearnedRoutes {
-	return &NullableVrfLearnedRoutes{value: val, isSet: true}
+func NewNullableVrfBGPNeighborsList(val *VrfBGPNeighborsList) *NullableVrfBGPNeighborsList {
+	return &NullableVrfBGPNeighborsList{value: val, isSet: true}
 }
 
-func (v NullableVrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (v NullableVrfBGPNeighborsList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVrfLearnedRoutes) UnmarshalJSON(src []byte) error {
+func (v *NullableVrfBGPNeighborsList) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

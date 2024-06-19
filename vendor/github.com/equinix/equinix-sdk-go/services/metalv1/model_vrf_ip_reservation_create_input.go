@@ -21,11 +21,11 @@ var _ MappedNullable = &VrfIpReservationCreateInput{}
 
 // VrfIpReservationCreateInput struct for VrfIpReservationCreateInput
 type VrfIpReservationCreateInput struct {
-	// The size of the VRF IP Reservation's subnet
+	// The size of the VRF IP Reservation's subnet. The following subnet sizes are supported: - IPv4: between 22 - 29 inclusive - IPv6: exactly 64
 	Cidr       int32                  `json:"cidr"`
 	Customdata map[string]interface{} `json:"customdata,omitempty"`
 	Details    *string                `json:"details,omitempty"`
-	// The starting address for this VRF IP Reservation's subnet
+	// The starting address for this VRF IP Reservation's subnet. Both IPv4 and IPv6 are supported.
 	Network string   `json:"network"`
 	Tags    []string `json:"tags,omitempty"`
 	// Must be set to 'vrf'

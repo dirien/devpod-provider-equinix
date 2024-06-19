@@ -21,12 +21,12 @@ var _ MappedNullable = &VrfVirtualCircuitCreateInput{}
 
 // VrfVirtualCircuitCreateInput struct for VrfVirtualCircuitCreateInput
 type VrfVirtualCircuitCreateInput struct {
-	// An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
+	// An IPv4 address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
 	CustomerIp  *string `json:"customer_ip,omitempty"`
 	Description *string `json:"description,omitempty"`
 	// The plaintext BGP peering password shared by neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character
 	Md5 NullableString `json:"md5,omitempty"`
-	// An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
+	// An IPv4 address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
 	MetalIp *string `json:"metal_ip,omitempty"`
 	Name    *string `json:"name,omitempty"`
 	NniVlan int32   `json:"nni_vlan"`
@@ -35,11 +35,17 @@ type VrfVirtualCircuitCreateInput struct {
 	ProjectId string `json:"project_id"`
 	// speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')
 	Speed *string `json:"speed,omitempty"`
-	// The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.
+	// The /30 or /31 IPv4 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.
 	Subnet string   `json:"subnet"`
 	Tags   []string `json:"tags,omitempty"`
 	// The UUID of the VRF that will be associated with the Virtual Circuit.
-	Vrf                  string `json:"vrf"`
+	Vrf string `json:"vrf"`
+	// The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IPv6 and Customer IPv6 must be IPs from this subnet. For /126 subnets, the network and broadcast IPs cannot be used as the Metal IPv6 or Customer IPv6. The subnet specified must be contained within an already-defined IP Range for the VRF.
+	SubnetIpv6 *string `json:"subnet_ipv6,omitempty"`
+	// An IPv6 address from the subnet IPv6 that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet IPv6 as the Metal IPv6. By default, the last usable IP address in the subnet IPv6 will be used.
+	CustomerIpv6 *string `json:"customer_ipv6,omitempty"`
+	// An IPv6 address from the subnet IPv6 that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IPv6 address in the subnet IPv6 as the Customer IP. By default, the first usable IPv6 address in the subnet IPv6 will be used.
+	MetalIpv6            *string `json:"metal_ipv6,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -422,6 +428,102 @@ func (o *VrfVirtualCircuitCreateInput) SetVrf(v string) {
 	o.Vrf = v
 }
 
+// GetSubnetIpv6 returns the SubnetIpv6 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitCreateInput) GetSubnetIpv6() string {
+	if o == nil || IsNil(o.SubnetIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.SubnetIpv6
+}
+
+// GetSubnetIpv6Ok returns a tuple with the SubnetIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitCreateInput) GetSubnetIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.SubnetIpv6) {
+		return nil, false
+	}
+	return o.SubnetIpv6, true
+}
+
+// HasSubnetIpv6 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitCreateInput) HasSubnetIpv6() bool {
+	if o != nil && !IsNil(o.SubnetIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubnetIpv6 gets a reference to the given string and assigns it to the SubnetIpv6 field.
+func (o *VrfVirtualCircuitCreateInput) SetSubnetIpv6(v string) {
+	o.SubnetIpv6 = &v
+}
+
+// GetCustomerIpv6 returns the CustomerIpv6 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitCreateInput) GetCustomerIpv6() string {
+	if o == nil || IsNil(o.CustomerIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIpv6
+}
+
+// GetCustomerIpv6Ok returns a tuple with the CustomerIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitCreateInput) GetCustomerIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.CustomerIpv6) {
+		return nil, false
+	}
+	return o.CustomerIpv6, true
+}
+
+// HasCustomerIpv6 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitCreateInput) HasCustomerIpv6() bool {
+	if o != nil && !IsNil(o.CustomerIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIpv6 gets a reference to the given string and assigns it to the CustomerIpv6 field.
+func (o *VrfVirtualCircuitCreateInput) SetCustomerIpv6(v string) {
+	o.CustomerIpv6 = &v
+}
+
+// GetMetalIpv6 returns the MetalIpv6 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuitCreateInput) GetMetalIpv6() string {
+	if o == nil || IsNil(o.MetalIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.MetalIpv6
+}
+
+// GetMetalIpv6Ok returns a tuple with the MetalIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuitCreateInput) GetMetalIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.MetalIpv6) {
+		return nil, false
+	}
+	return o.MetalIpv6, true
+}
+
+// HasMetalIpv6 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuitCreateInput) HasMetalIpv6() bool {
+	if o != nil && !IsNil(o.MetalIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetalIpv6 gets a reference to the given string and assigns it to the MetalIpv6 field.
+func (o *VrfVirtualCircuitCreateInput) SetMetalIpv6(v string) {
+	o.MetalIpv6 = &v
+}
+
 func (o VrfVirtualCircuitCreateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -458,6 +560,15 @@ func (o VrfVirtualCircuitCreateInput) ToMap() (map[string]interface{}, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	toSerialize["vrf"] = o.Vrf
+	if !IsNil(o.SubnetIpv6) {
+		toSerialize["subnet_ipv6"] = o.SubnetIpv6
+	}
+	if !IsNil(o.CustomerIpv6) {
+		toSerialize["customer_ipv6"] = o.CustomerIpv6
+	}
+	if !IsNil(o.MetalIpv6) {
+		toSerialize["metal_ipv6"] = o.MetalIpv6
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -517,6 +628,9 @@ func (o *VrfVirtualCircuitCreateInput) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "subnet")
 		delete(additionalProperties, "tags")
 		delete(additionalProperties, "vrf")
+		delete(additionalProperties, "subnet_ipv6")
+		delete(additionalProperties, "customer_ipv6")
+		delete(additionalProperties, "metal_ipv6")
 		o.AdditionalProperties = additionalProperties
 	}
 

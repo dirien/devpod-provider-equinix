@@ -37,7 +37,7 @@ type Vrf struct {
 	LocalAsn *int64 `json:"local_asn,omitempty"`
 	// Virtual circuits that are in the VRF
 	VirtualCircuits []VrfVirtualCircuit `json:"virtual_circuits,omitempty"`
-	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].
+	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/59\"].
 	IpRanges             []string   `json:"ip_ranges,omitempty"`
 	Project              *Project   `json:"project,omitempty"`
 	Metro                *Metro     `json:"metro,omitempty"`

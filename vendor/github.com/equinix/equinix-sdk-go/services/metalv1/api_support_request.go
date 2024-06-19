@@ -22,46 +22,46 @@ import (
 // SupportRequestApiService SupportRequestApi service
 type SupportRequestApiService service
 
-type ApiRequestSuppertRequest struct {
+type ApiRequestSupportRequest struct {
 	ctx                 context.Context
 	ApiService          *SupportRequestApiService
 	supportRequestInput *SupportRequestInput
 }
 
 // Support Request to create
-func (r ApiRequestSuppertRequest) SupportRequestInput(supportRequestInput SupportRequestInput) ApiRequestSuppertRequest {
+func (r ApiRequestSupportRequest) SupportRequestInput(supportRequestInput SupportRequestInput) ApiRequestSupportRequest {
 	r.supportRequestInput = &supportRequestInput
 	return r
 }
 
-func (r ApiRequestSuppertRequest) Execute() (*http.Response, error) {
-	return r.ApiService.RequestSuppertExecute(r)
+func (r ApiRequestSupportRequest) Execute() (*http.Response, error) {
+	return r.ApiService.RequestSupportExecute(r)
 }
 
 /*
-RequestSuppert Create a support ticket
+RequestSupport Create a support ticket
 
 Support Ticket.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiRequestSuppertRequest
+	@return ApiRequestSupportRequest
 */
-func (a *SupportRequestApiService) RequestSuppert(ctx context.Context) ApiRequestSuppertRequest {
-	return ApiRequestSuppertRequest{
+func (a *SupportRequestApiService) RequestSupport(ctx context.Context) ApiRequestSupportRequest {
+	return ApiRequestSupportRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-func (a *SupportRequestApiService) RequestSuppertExecute(r ApiRequestSuppertRequest) (*http.Response, error) {
+func (a *SupportRequestApiService) RequestSupportExecute(r ApiRequestSupportRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportRequestApiService.RequestSuppert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SupportRequestApiService.RequestSupport")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

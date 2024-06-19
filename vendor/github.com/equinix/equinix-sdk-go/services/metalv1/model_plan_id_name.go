@@ -15,101 +15,100 @@ import (
 	"encoding/json"
 )
 
-// checks if the VrfLearnedRoutes type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VrfLearnedRoutes{}
+// checks if the PlanIdName type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PlanIdName{}
 
-// VrfLearnedRoutes struct for VrfLearnedRoutes
-type VrfLearnedRoutes struct {
-	Prefix *string `json:"prefix,omitempty"`
-	// The ASN of the peer that advertised the prefix.
-	OriginAs             *int64 `json:"origin_as,omitempty"`
+// PlanIdName struct for PlanIdName
+type PlanIdName struct {
+	Id                   *string `json:"id,omitempty"`
+	Name                 *string `json:"name,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _VrfLearnedRoutes VrfLearnedRoutes
+type _PlanIdName PlanIdName
 
-// NewVrfLearnedRoutes instantiates a new VrfLearnedRoutes object
+// NewPlanIdName instantiates a new PlanIdName object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfLearnedRoutes() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewPlanIdName() *PlanIdName {
+	this := PlanIdName{}
 	return &this
 }
 
-// NewVrfLearnedRoutesWithDefaults instantiates a new VrfLearnedRoutes object
+// NewPlanIdNameWithDefaults instantiates a new PlanIdName object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVrfLearnedRoutesWithDefaults() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewPlanIdNameWithDefaults() *PlanIdName {
+	this := PlanIdName{}
 	return &this
 }
 
-// GetPrefix returns the Prefix field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetPrefix() string {
-	if o == nil || IsNil(o.Prefix) {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *PlanIdName) GetId() string {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-	return *o.Prefix
+	return *o.Id
 }
 
-// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.Prefix) {
+func (o *PlanIdName) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Prefix, true
+	return o.Id, true
 }
 
-// HasPrefix returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasPrefix() bool {
-	if o != nil && !IsNil(o.Prefix) {
+// HasId returns a boolean if a field has been set.
+func (o *PlanIdName) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetPrefix gets a reference to the given string and assigns it to the Prefix field.
-func (o *VrfLearnedRoutes) SetPrefix(v string) {
-	o.Prefix = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *PlanIdName) SetId(v string) {
+	o.Id = &v
 }
 
-// GetOriginAs returns the OriginAs field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetOriginAs() int64 {
-	if o == nil || IsNil(o.OriginAs) {
-		var ret int64
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *PlanIdName) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
 		return ret
 	}
-	return *o.OriginAs
+	return *o.Name
 }
 
-// GetOriginAsOk returns a tuple with the OriginAs field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetOriginAsOk() (*int64, bool) {
-	if o == nil || IsNil(o.OriginAs) {
+func (o *PlanIdName) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.OriginAs, true
+	return o.Name, true
 }
 
-// HasOriginAs returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasOriginAs() bool {
-	if o != nil && !IsNil(o.OriginAs) {
+// HasName returns a boolean if a field has been set.
+func (o *PlanIdName) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetOriginAs gets a reference to the given int64 and assigns it to the OriginAs field.
-func (o *VrfLearnedRoutes) SetOriginAs(v int64) {
-	o.OriginAs = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *PlanIdName) SetName(v string) {
+	o.Name = &v
 }
 
-func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (o PlanIdName) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -117,13 +116,13 @@ func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
+func (o PlanIdName) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
-	if !IsNil(o.OriginAs) {
-		toSerialize["origin_as"] = o.OriginAs
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -133,60 +132,60 @@ func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VrfLearnedRoutes) UnmarshalJSON(data []byte) (err error) {
-	varVrfLearnedRoutes := _VrfLearnedRoutes{}
+func (o *PlanIdName) UnmarshalJSON(data []byte) (err error) {
+	varPlanIdName := _PlanIdName{}
 
-	err = json.Unmarshal(data, &varVrfLearnedRoutes)
+	err = json.Unmarshal(data, &varPlanIdName)
 
 	if err != nil {
 		return err
 	}
 
-	*o = VrfLearnedRoutes(varVrfLearnedRoutes)
+	*o = PlanIdName(varPlanIdName)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "prefix")
-		delete(additionalProperties, "origin_as")
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableVrfLearnedRoutes struct {
-	value *VrfLearnedRoutes
+type NullablePlanIdName struct {
+	value *PlanIdName
 	isSet bool
 }
 
-func (v NullableVrfLearnedRoutes) Get() *VrfLearnedRoutes {
+func (v NullablePlanIdName) Get() *PlanIdName {
 	return v.value
 }
 
-func (v *NullableVrfLearnedRoutes) Set(val *VrfLearnedRoutes) {
+func (v *NullablePlanIdName) Set(val *PlanIdName) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVrfLearnedRoutes) IsSet() bool {
+func (v NullablePlanIdName) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVrfLearnedRoutes) Unset() {
+func (v *NullablePlanIdName) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVrfLearnedRoutes(val *VrfLearnedRoutes) *NullableVrfLearnedRoutes {
-	return &NullableVrfLearnedRoutes{value: val, isSet: true}
+func NewNullablePlanIdName(val *PlanIdName) *NullablePlanIdName {
+	return &NullablePlanIdName{value: val, isSet: true}
 }
 
-func (v NullableVrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (v NullablePlanIdName) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVrfLearnedRoutes) UnmarshalJSON(src []byte) error {
+func (v *NullablePlanIdName) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

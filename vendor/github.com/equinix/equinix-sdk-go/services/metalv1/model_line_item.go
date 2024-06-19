@@ -24,7 +24,7 @@ type LineItem struct {
 	Currency    *string        `json:"currency,omitempty"`
 	Description *string        `json:"description,omitempty"`
 	Details     *string        `json:"details,omitempty"`
-	Plan        *Plan          `json:"plan,omitempty"`
+	Plan        *PlanIdName    `json:"plan,omitempty"`
 	Unit        *string        `json:"unit,omitempty"`
 	UnitPrice   *float32       `json:"unit_price,omitempty"`
 	Hostname    *string        `json:"hostname,omitempty"`
@@ -189,9 +189,9 @@ func (o *LineItem) SetDetails(v string) {
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
-func (o *LineItem) GetPlan() Plan {
+func (o *LineItem) GetPlan() PlanIdName {
 	if o == nil || IsNil(o.Plan) {
-		var ret Plan
+		var ret PlanIdName
 		return ret
 	}
 	return *o.Plan
@@ -199,7 +199,7 @@ func (o *LineItem) GetPlan() Plan {
 
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LineItem) GetPlanOk() (*Plan, bool) {
+func (o *LineItem) GetPlanOk() (*PlanIdName, bool) {
 	if o == nil || IsNil(o.Plan) {
 		return nil, false
 	}
@@ -215,8 +215,8 @@ func (o *LineItem) HasPlan() bool {
 	return false
 }
 
-// SetPlan gets a reference to the given Plan and assigns it to the Plan field.
-func (o *LineItem) SetPlan(v Plan) {
+// SetPlan gets a reference to the given PlanIdName and assigns it to the Plan field.
+func (o *LineItem) SetPlan(v PlanIdName) {
 	o.Plan = &v
 }
 

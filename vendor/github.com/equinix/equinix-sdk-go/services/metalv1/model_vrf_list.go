@@ -20,6 +20,7 @@ var _ MappedNullable = &VrfList{}
 
 // VrfList struct for VrfList
 type VrfList struct {
+	Meta                 *Meta `json:"meta,omitempty"`
 	Vrfs                 []Vrf `json:"vrfs,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -41,6 +42,38 @@ func NewVrfList() *VrfList {
 func NewVrfListWithDefaults() *VrfList {
 	this := VrfList{}
 	return &this
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *VrfList) GetMeta() Meta {
+	if o == nil || IsNil(o.Meta) {
+		var ret Meta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfList) GetMetaOk() (*Meta, bool) {
+	if o == nil || IsNil(o.Meta) {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *VrfList) HasMeta() bool {
+	if o != nil && !IsNil(o.Meta) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeta gets a reference to the given Meta and assigns it to the Meta field.
+func (o *VrfList) SetMeta(v Meta) {
+	o.Meta = &v
 }
 
 // GetVrfs returns the Vrfs field value if set, zero value otherwise.
@@ -85,6 +118,9 @@ func (o VrfList) MarshalJSON() ([]byte, error) {
 
 func (o VrfList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Meta) {
+		toSerialize["meta"] = o.Meta
+	}
 	if !IsNil(o.Vrfs) {
 		toSerialize["vrfs"] = o.Vrfs
 	}
@@ -110,6 +146,7 @@ func (o *VrfList) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "meta")
 		delete(additionalProperties, "vrfs")
 		o.AdditionalProperties = additionalProperties
 	}

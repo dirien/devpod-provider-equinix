@@ -28,7 +28,7 @@ type VrfCreateInput struct {
 	// Toggle BFD on dynamic bgp neighbors sessions
 	BgpDynamicNeighborsBfdEnabled *bool   `json:"bgp_dynamic_neighbors_bfd_enabled,omitempty"`
 	Description                   *string `json:"description,omitempty"`
-	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits.
+	// A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/59\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /59 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits.
 	IpRanges []string `json:"ip_ranges,omitempty"`
 	LocalAsn *int64   `json:"local_asn,omitempty"`
 	// The UUID (or metro code) for the Metro in which to create this VRF.
