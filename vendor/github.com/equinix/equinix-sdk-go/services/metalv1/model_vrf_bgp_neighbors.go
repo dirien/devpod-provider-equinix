@@ -20,7 +20,11 @@ var _ MappedNullable = &VrfBGPNeighbors{}
 
 // VrfBGPNeighbors struct for VrfBGPNeighbors
 type VrfBGPNeighbors struct {
-	BgpNeighbors         map[string]interface{} `json:"bgp_neighbors,omitempty"`
+	PeerIp *string `json:"peer_ip,omitempty"`
+	// The ASN of the peer that advertised the prefix.
+	PeerAs *int64 `json:"peer_as,omitempty"`
+	// The current status of the connection to the BGP peer. State is either up or down.
+	State                *string `json:"state,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -43,36 +47,100 @@ func NewVrfBGPNeighborsWithDefaults() *VrfBGPNeighbors {
 	return &this
 }
 
-// GetBgpNeighbors returns the BgpNeighbors field value if set, zero value otherwise.
-func (o *VrfBGPNeighbors) GetBgpNeighbors() map[string]interface{} {
-	if o == nil || IsNil(o.BgpNeighbors) {
-		var ret map[string]interface{}
+// GetPeerIp returns the PeerIp field value if set, zero value otherwise.
+func (o *VrfBGPNeighbors) GetPeerIp() string {
+	if o == nil || IsNil(o.PeerIp) {
+		var ret string
 		return ret
 	}
-	return o.BgpNeighbors
+	return *o.PeerIp
 }
 
-// GetBgpNeighborsOk returns a tuple with the BgpNeighbors field value if set, nil otherwise
+// GetPeerIpOk returns a tuple with the PeerIp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfBGPNeighbors) GetBgpNeighborsOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.BgpNeighbors) {
-		return map[string]interface{}{}, false
+func (o *VrfBGPNeighbors) GetPeerIpOk() (*string, bool) {
+	if o == nil || IsNil(o.PeerIp) {
+		return nil, false
 	}
-	return o.BgpNeighbors, true
+	return o.PeerIp, true
 }
 
-// HasBgpNeighbors returns a boolean if a field has been set.
-func (o *VrfBGPNeighbors) HasBgpNeighbors() bool {
-	if o != nil && !IsNil(o.BgpNeighbors) {
+// HasPeerIp returns a boolean if a field has been set.
+func (o *VrfBGPNeighbors) HasPeerIp() bool {
+	if o != nil && !IsNil(o.PeerIp) {
 		return true
 	}
 
 	return false
 }
 
-// SetBgpNeighbors gets a reference to the given map[string]interface{} and assigns it to the BgpNeighbors field.
-func (o *VrfBGPNeighbors) SetBgpNeighbors(v map[string]interface{}) {
-	o.BgpNeighbors = v
+// SetPeerIp gets a reference to the given string and assigns it to the PeerIp field.
+func (o *VrfBGPNeighbors) SetPeerIp(v string) {
+	o.PeerIp = &v
+}
+
+// GetPeerAs returns the PeerAs field value if set, zero value otherwise.
+func (o *VrfBGPNeighbors) GetPeerAs() int64 {
+	if o == nil || IsNil(o.PeerAs) {
+		var ret int64
+		return ret
+	}
+	return *o.PeerAs
+}
+
+// GetPeerAsOk returns a tuple with the PeerAs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfBGPNeighbors) GetPeerAsOk() (*int64, bool) {
+	if o == nil || IsNil(o.PeerAs) {
+		return nil, false
+	}
+	return o.PeerAs, true
+}
+
+// HasPeerAs returns a boolean if a field has been set.
+func (o *VrfBGPNeighbors) HasPeerAs() bool {
+	if o != nil && !IsNil(o.PeerAs) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeerAs gets a reference to the given int64 and assigns it to the PeerAs field.
+func (o *VrfBGPNeighbors) SetPeerAs(v int64) {
+	o.PeerAs = &v
+}
+
+// GetState returns the State field value if set, zero value otherwise.
+func (o *VrfBGPNeighbors) GetState() string {
+	if o == nil || IsNil(o.State) {
+		var ret string
+		return ret
+	}
+	return *o.State
+}
+
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfBGPNeighbors) GetStateOk() (*string, bool) {
+	if o == nil || IsNil(o.State) {
+		return nil, false
+	}
+	return o.State, true
+}
+
+// HasState returns a boolean if a field has been set.
+func (o *VrfBGPNeighbors) HasState() bool {
+	if o != nil && !IsNil(o.State) {
+		return true
+	}
+
+	return false
+}
+
+// SetState gets a reference to the given string and assigns it to the State field.
+func (o *VrfBGPNeighbors) SetState(v string) {
+	o.State = &v
 }
 
 func (o VrfBGPNeighbors) MarshalJSON() ([]byte, error) {
@@ -85,8 +153,14 @@ func (o VrfBGPNeighbors) MarshalJSON() ([]byte, error) {
 
 func (o VrfBGPNeighbors) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.BgpNeighbors) {
-		toSerialize["bgp_neighbors"] = o.BgpNeighbors
+	if !IsNil(o.PeerIp) {
+		toSerialize["peer_ip"] = o.PeerIp
+	}
+	if !IsNil(o.PeerAs) {
+		toSerialize["peer_as"] = o.PeerAs
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -110,7 +184,9 @@ func (o *VrfBGPNeighbors) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "bgp_neighbors")
+		delete(additionalProperties, "peer_ip")
+		delete(additionalProperties, "peer_as")
+		delete(additionalProperties, "state")
 		o.AdditionalProperties = additionalProperties
 	}
 

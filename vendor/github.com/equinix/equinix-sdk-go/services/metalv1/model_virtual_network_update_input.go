@@ -15,101 +15,100 @@ import (
 	"encoding/json"
 )
 
-// checks if the VrfLearnedRoutes type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &VrfLearnedRoutes{}
+// checks if the VirtualNetworkUpdateInput type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &VirtualNetworkUpdateInput{}
 
-// VrfLearnedRoutes struct for VrfLearnedRoutes
-type VrfLearnedRoutes struct {
-	Prefix *string `json:"prefix,omitempty"`
-	// The ASN of the peer that advertised the prefix.
-	OriginAs             *int64 `json:"origin_as,omitempty"`
+// VirtualNetworkUpdateInput struct for VirtualNetworkUpdateInput
+type VirtualNetworkUpdateInput struct {
+	Description          *string  `json:"description,omitempty"`
+	Tags                 []string `json:"tags,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _VrfLearnedRoutes VrfLearnedRoutes
+type _VirtualNetworkUpdateInput VirtualNetworkUpdateInput
 
-// NewVrfLearnedRoutes instantiates a new VrfLearnedRoutes object
+// NewVirtualNetworkUpdateInput instantiates a new VirtualNetworkUpdateInput object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewVrfLearnedRoutes() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewVirtualNetworkUpdateInput() *VirtualNetworkUpdateInput {
+	this := VirtualNetworkUpdateInput{}
 	return &this
 }
 
-// NewVrfLearnedRoutesWithDefaults instantiates a new VrfLearnedRoutes object
+// NewVirtualNetworkUpdateInputWithDefaults instantiates a new VirtualNetworkUpdateInput object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewVrfLearnedRoutesWithDefaults() *VrfLearnedRoutes {
-	this := VrfLearnedRoutes{}
+func NewVirtualNetworkUpdateInputWithDefaults() *VirtualNetworkUpdateInput {
+	this := VirtualNetworkUpdateInput{}
 	return &this
 }
 
-// GetPrefix returns the Prefix field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetPrefix() string {
-	if o == nil || IsNil(o.Prefix) {
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *VirtualNetworkUpdateInput) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-	return *o.Prefix
+	return *o.Description
 }
 
-// GetPrefixOk returns a tuple with the Prefix field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetPrefixOk() (*string, bool) {
-	if o == nil || IsNil(o.Prefix) {
+func (o *VirtualNetworkUpdateInput) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Prefix, true
+	return o.Description, true
 }
 
-// HasPrefix returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasPrefix() bool {
-	if o != nil && !IsNil(o.Prefix) {
+// HasDescription returns a boolean if a field has been set.
+func (o *VirtualNetworkUpdateInput) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetPrefix gets a reference to the given string and assigns it to the Prefix field.
-func (o *VrfLearnedRoutes) SetPrefix(v string) {
-	o.Prefix = &v
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *VirtualNetworkUpdateInput) SetDescription(v string) {
+	o.Description = &v
 }
 
-// GetOriginAs returns the OriginAs field value if set, zero value otherwise.
-func (o *VrfLearnedRoutes) GetOriginAs() int64 {
-	if o == nil || IsNil(o.OriginAs) {
-		var ret int64
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *VirtualNetworkUpdateInput) GetTags() []string {
+	if o == nil || IsNil(o.Tags) {
+		var ret []string
 		return ret
 	}
-	return *o.OriginAs
+	return o.Tags
 }
 
-// GetOriginAsOk returns a tuple with the OriginAs field value if set, nil otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VrfLearnedRoutes) GetOriginAsOk() (*int64, bool) {
-	if o == nil || IsNil(o.OriginAs) {
+func (o *VirtualNetworkUpdateInput) GetTagsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
-	return o.OriginAs, true
+	return o.Tags, true
 }
 
-// HasOriginAs returns a boolean if a field has been set.
-func (o *VrfLearnedRoutes) HasOriginAs() bool {
-	if o != nil && !IsNil(o.OriginAs) {
+// HasTags returns a boolean if a field has been set.
+func (o *VirtualNetworkUpdateInput) HasTags() bool {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
 	return false
 }
 
-// SetOriginAs gets a reference to the given int64 and assigns it to the OriginAs field.
-func (o *VrfLearnedRoutes) SetOriginAs(v int64) {
-	o.OriginAs = &v
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *VirtualNetworkUpdateInput) SetTags(v []string) {
+	o.Tags = v
 }
 
-func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (o VirtualNetworkUpdateInput) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -117,13 +116,13 @@ func (o VrfLearnedRoutes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
+func (o VirtualNetworkUpdateInput) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Prefix) {
-		toSerialize["prefix"] = o.Prefix
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.OriginAs) {
-		toSerialize["origin_as"] = o.OriginAs
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -133,60 +132,60 @@ func (o VrfLearnedRoutes) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *VrfLearnedRoutes) UnmarshalJSON(data []byte) (err error) {
-	varVrfLearnedRoutes := _VrfLearnedRoutes{}
+func (o *VirtualNetworkUpdateInput) UnmarshalJSON(data []byte) (err error) {
+	varVirtualNetworkUpdateInput := _VirtualNetworkUpdateInput{}
 
-	err = json.Unmarshal(data, &varVrfLearnedRoutes)
+	err = json.Unmarshal(data, &varVirtualNetworkUpdateInput)
 
 	if err != nil {
 		return err
 	}
 
-	*o = VrfLearnedRoutes(varVrfLearnedRoutes)
+	*o = VirtualNetworkUpdateInput(varVirtualNetworkUpdateInput)
 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "prefix")
-		delete(additionalProperties, "origin_as")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "tags")
 		o.AdditionalProperties = additionalProperties
 	}
 
 	return err
 }
 
-type NullableVrfLearnedRoutes struct {
-	value *VrfLearnedRoutes
+type NullableVirtualNetworkUpdateInput struct {
+	value *VirtualNetworkUpdateInput
 	isSet bool
 }
 
-func (v NullableVrfLearnedRoutes) Get() *VrfLearnedRoutes {
+func (v NullableVirtualNetworkUpdateInput) Get() *VirtualNetworkUpdateInput {
 	return v.value
 }
 
-func (v *NullableVrfLearnedRoutes) Set(val *VrfLearnedRoutes) {
+func (v *NullableVirtualNetworkUpdateInput) Set(val *VirtualNetworkUpdateInput) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableVrfLearnedRoutes) IsSet() bool {
+func (v NullableVirtualNetworkUpdateInput) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableVrfLearnedRoutes) Unset() {
+func (v *NullableVirtualNetworkUpdateInput) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableVrfLearnedRoutes(val *VrfLearnedRoutes) *NullableVrfLearnedRoutes {
-	return &NullableVrfLearnedRoutes{value: val, isSet: true}
+func NewNullableVirtualNetworkUpdateInput(val *VirtualNetworkUpdateInput) *NullableVirtualNetworkUpdateInput {
+	return &NullableVirtualNetworkUpdateInput{value: val, isSet: true}
 }
 
-func (v NullableVrfLearnedRoutes) MarshalJSON() ([]byte, error) {
+func (v NullableVirtualNetworkUpdateInput) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableVrfLearnedRoutes) UnmarshalJSON(src []byte) error {
+func (v *NullableVirtualNetworkUpdateInput) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

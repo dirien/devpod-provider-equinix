@@ -2217,12 +2217,12 @@ type ApiGetVrfBGPNeighborsRequest struct {
 	id         string
 }
 
-func (r ApiGetVrfBGPNeighborsRequest) Execute() (*VrfBGPNeighbors, *http.Response, error) {
+func (r ApiGetVrfBGPNeighborsRequest) Execute() (*VrfBGPNeighborsList, *http.Response, error) {
 	return r.ApiService.GetVrfBGPNeighborsExecute(r)
 }
 
 /*
-GetVrfBGPNeighbors Retreive BGP neighbor states for the VRF
+GetVrfBGPNeighbors Retrieve BGP neighbor states for the VRF
 
 Provides BGP peering information such as the IP and state of the neighbor.
 
@@ -2240,13 +2240,13 @@ func (a *VRFsApiService) GetVrfBGPNeighbors(ctx context.Context, id string) ApiG
 
 // Execute executes the request
 //
-//	@return VrfBGPNeighbors
-func (a *VRFsApiService) GetVrfBGPNeighborsExecute(r ApiGetVrfBGPNeighborsRequest) (*VrfBGPNeighbors, *http.Response, error) {
+//	@return VrfBGPNeighborsList
+func (a *VRFsApiService) GetVrfBGPNeighborsExecute(r ApiGetVrfBGPNeighborsRequest) (*VrfBGPNeighborsList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VrfBGPNeighbors
+		localVarReturnValue *VrfBGPNeighborsList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.GetVrfBGPNeighbors")
@@ -2356,12 +2356,12 @@ type ApiGetVrfLearnedRoutesRequest struct {
 	id         string
 }
 
-func (r ApiGetVrfLearnedRoutesRequest) Execute() (*VrfLearnedRoutes, *http.Response, error) {
+func (r ApiGetVrfLearnedRoutesRequest) Execute() (*VrfLearnedRoutesList, *http.Response, error) {
 	return r.ApiService.GetVrfLearnedRoutesExecute(r)
 }
 
 /*
-GetVrfLearnedRoutes Retreive learned L3 routes within the VRF
+GetVrfLearnedRoutes Retrieve learned L3 routes within the VRF
 
 Provides information about learned routes for the VRF. The VRF builds this information dynamically though BGP from other routers in the network.
 
@@ -2379,13 +2379,13 @@ func (a *VRFsApiService) GetVrfLearnedRoutes(ctx context.Context, id string) Api
 
 // Execute executes the request
 //
-//	@return VrfLearnedRoutes
-func (a *VRFsApiService) GetVrfLearnedRoutesExecute(r ApiGetVrfLearnedRoutesRequest) (*VrfLearnedRoutes, *http.Response, error) {
+//	@return VrfLearnedRoutesList
+func (a *VRFsApiService) GetVrfLearnedRoutesExecute(r ApiGetVrfLearnedRoutesRequest) (*VrfLearnedRoutesList, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *VrfLearnedRoutes
+		localVarReturnValue *VrfLearnedRoutesList
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VRFsApiService.GetVrfLearnedRoutes")
