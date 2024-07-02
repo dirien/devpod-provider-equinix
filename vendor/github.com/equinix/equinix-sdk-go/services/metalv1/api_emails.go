@@ -46,6 +46,8 @@ Add a new email address to the current user.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateEmailRequest
+
+Deprecated
 */
 func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailRequest {
 	return ApiCreateEmailRequest{
@@ -57,6 +59,8 @@ func (a *EmailsApiService) CreateEmail(ctx context.Context) ApiCreateEmailReques
 // Execute executes the request
 //
 //	@return Email
+//
+// Deprecated
 func (a *EmailsApiService) CreateEmailExecute(r ApiCreateEmailRequest) (*Email, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
