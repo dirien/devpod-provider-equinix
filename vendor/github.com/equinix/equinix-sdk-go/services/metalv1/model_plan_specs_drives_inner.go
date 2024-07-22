@@ -20,10 +20,12 @@ var _ MappedNullable = &PlanSpecsDrivesInner{}
 
 // PlanSpecsDrivesInner struct for PlanSpecsDrivesInner
 type PlanSpecsDrivesInner struct {
-	Count                *int32                        `json:"count,omitempty"`
-	Type                 *string                       `json:"type,omitempty"`
-	Size                 *string                       `json:"size,omitempty"`
-	Category             *PlanSpecsDrivesInnerCategory `json:"category,omitempty"`
+	Count *int32 `json:"count,omitempty"`
+	// Values may include 'HDD', 'SSD', 'NVME'
+	Type *string `json:"type,omitempty"`
+	Size *string `json:"size,omitempty"`
+	// Values may include 'boot', 'cache', 'storage'
+	Category             *string `json:"category,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -143,9 +145,9 @@ func (o *PlanSpecsDrivesInner) SetSize(v string) {
 }
 
 // GetCategory returns the Category field value if set, zero value otherwise.
-func (o *PlanSpecsDrivesInner) GetCategory() PlanSpecsDrivesInnerCategory {
+func (o *PlanSpecsDrivesInner) GetCategory() string {
 	if o == nil || IsNil(o.Category) {
-		var ret PlanSpecsDrivesInnerCategory
+		var ret string
 		return ret
 	}
 	return *o.Category
@@ -153,7 +155,7 @@ func (o *PlanSpecsDrivesInner) GetCategory() PlanSpecsDrivesInnerCategory {
 
 // GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PlanSpecsDrivesInner) GetCategoryOk() (*PlanSpecsDrivesInnerCategory, bool) {
+func (o *PlanSpecsDrivesInner) GetCategoryOk() (*string, bool) {
 	if o == nil || IsNil(o.Category) {
 		return nil, false
 	}
@@ -169,8 +171,8 @@ func (o *PlanSpecsDrivesInner) HasCategory() bool {
 	return false
 }
 
-// SetCategory gets a reference to the given PlanSpecsDrivesInnerCategory and assigns it to the Category field.
-func (o *PlanSpecsDrivesInner) SetCategory(v PlanSpecsDrivesInnerCategory) {
+// SetCategory gets a reference to the given string and assigns it to the Category field.
+func (o *PlanSpecsDrivesInner) SetCategory(v string) {
 	o.Category = &v
 }
 

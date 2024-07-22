@@ -20,7 +20,8 @@ var _ MappedNullable = &PlanSpecsNicsInner{}
 
 // PlanSpecsNicsInner struct for PlanSpecsNicsInner
 type PlanSpecsNicsInner struct {
-	Count                *int32  `json:"count,omitempty"`
+	Count *int32 `json:"count,omitempty"`
+	// Values may include '1Gbps', '10Gbps', '25Gbps'
 	Type                 *string `json:"type,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

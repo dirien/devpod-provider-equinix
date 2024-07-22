@@ -20,7 +20,7 @@ var _ MappedNullable = &VrfLearnedRoutesList{}
 
 // VrfLearnedRoutesList struct for VrfLearnedRoutesList
 type VrfLearnedRoutesList struct {
-	LearnedRoutes        []VrfLearnedRoutes `json:"learned routes,omitempty"`
+	LearnedRoutes        []VrfLearnedRoutes `json:"learned_routes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -86,7 +86,7 @@ func (o VrfLearnedRoutesList) MarshalJSON() ([]byte, error) {
 func (o VrfLearnedRoutesList) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.LearnedRoutes) {
-		toSerialize["learned routes"] = o.LearnedRoutes
+		toSerialize["learned_routes"] = o.LearnedRoutes
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -110,7 +110,7 @@ func (o *VrfLearnedRoutesList) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "learned routes")
+		delete(additionalProperties, "learned_routes")
 		o.AdditionalProperties = additionalProperties
 	}
 
