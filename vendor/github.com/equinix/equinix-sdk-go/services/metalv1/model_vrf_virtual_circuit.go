@@ -23,16 +23,20 @@ var _ MappedNullable = &VrfVirtualCircuit{}
 // VrfVirtualCircuit struct for VrfVirtualCircuit
 type VrfVirtualCircuit struct {
 	// An IPv4 address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.
-	CustomerIp  *string `json:"customer_ip,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id          *string `json:"id,omitempty"`
+	CustomerIp *string `json:"customer_ip,omitempty"`
+	// An IPv6 address from the subnet IPv6 that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet IPv6 as the Metal IPv6. By default, the last usable IP address in the subnet IPv6 will be used.
+	CustomerIpv6 *string `json:"customer_ipv6,omitempty"`
+	Description  *string `json:"description,omitempty"`
+	Id           *string `json:"id,omitempty"`
 	// The MD5 password for the BGP peering in plaintext (not a checksum).
 	Md5 *string `json:"md5,omitempty"`
 	// An IPv4 address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.
-	MetalIp *string              `json:"metal_ip,omitempty"`
-	Name    *string              `json:"name,omitempty"`
-	Port    *InterconnectionPort `json:"port,omitempty"`
-	NniVlan *int32               `json:"nni_vlan,omitempty"`
+	MetalIp *string `json:"metal_ip,omitempty"`
+	// An IPv6 address from the subnet IPv6 that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IPv6 address in the subnet IPv6 as the Customer IP. By default, the first usable IPv6 address in the subnet IPv6 will be used.
+	MetalIpv6 *string              `json:"metal_ipv6,omitempty"`
+	Name      *string              `json:"name,omitempty"`
+	Port      *InterconnectionPort `json:"port,omitempty"`
+	NniVlan   *int32               `json:"nni_vlan,omitempty"`
 	// The peer ASN that will be used with the VRF on the Virtual Circuit.
 	PeerAsn *int64   `json:"peer_asn,omitempty"`
 	Project *Project `json:"project,omitempty"`
@@ -101,6 +105,38 @@ func (o *VrfVirtualCircuit) HasCustomerIp() bool {
 // SetCustomerIp gets a reference to the given string and assigns it to the CustomerIp field.
 func (o *VrfVirtualCircuit) SetCustomerIp(v string) {
 	o.CustomerIp = &v
+}
+
+// GetCustomerIpv6 returns the CustomerIpv6 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetCustomerIpv6() string {
+	if o == nil || IsNil(o.CustomerIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerIpv6
+}
+
+// GetCustomerIpv6Ok returns a tuple with the CustomerIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetCustomerIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.CustomerIpv6) {
+		return nil, false
+	}
+	return o.CustomerIpv6, true
+}
+
+// HasCustomerIpv6 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasCustomerIpv6() bool {
+	if o != nil && !IsNil(o.CustomerIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerIpv6 gets a reference to the given string and assigns it to the CustomerIpv6 field.
+func (o *VrfVirtualCircuit) SetCustomerIpv6(v string) {
+	o.CustomerIpv6 = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -229,6 +265,38 @@ func (o *VrfVirtualCircuit) HasMetalIp() bool {
 // SetMetalIp gets a reference to the given string and assigns it to the MetalIp field.
 func (o *VrfVirtualCircuit) SetMetalIp(v string) {
 	o.MetalIp = &v
+}
+
+// GetMetalIpv6 returns the MetalIpv6 field value if set, zero value otherwise.
+func (o *VrfVirtualCircuit) GetMetalIpv6() string {
+	if o == nil || IsNil(o.MetalIpv6) {
+		var ret string
+		return ret
+	}
+	return *o.MetalIpv6
+}
+
+// GetMetalIpv6Ok returns a tuple with the MetalIpv6 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VrfVirtualCircuit) GetMetalIpv6Ok() (*string, bool) {
+	if o == nil || IsNil(o.MetalIpv6) {
+		return nil, false
+	}
+	return o.MetalIpv6, true
+}
+
+// HasMetalIpv6 returns a boolean if a field has been set.
+func (o *VrfVirtualCircuit) HasMetalIpv6() bool {
+	if o != nil && !IsNil(o.MetalIpv6) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetalIpv6 gets a reference to the given string and assigns it to the MetalIpv6 field.
+func (o *VrfVirtualCircuit) SetMetalIpv6(v string) {
+	o.MetalIpv6 = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -684,6 +752,9 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomerIp) {
 		toSerialize["customer_ip"] = o.CustomerIp
 	}
+	if !IsNil(o.CustomerIpv6) {
+		toSerialize["customer_ipv6"] = o.CustomerIpv6
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
@@ -695,6 +766,9 @@ func (o VrfVirtualCircuit) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.MetalIp) {
 		toSerialize["metal_ip"] = o.MetalIp
+	}
+	if !IsNil(o.MetalIpv6) {
+		toSerialize["metal_ipv6"] = o.MetalIpv6
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -780,10 +854,12 @@ func (o *VrfVirtualCircuit) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "customer_ip")
+		delete(additionalProperties, "customer_ipv6")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "md5")
 		delete(additionalProperties, "metal_ip")
+		delete(additionalProperties, "metal_ipv6")
 		delete(additionalProperties, "name")
 		delete(additionalProperties, "port")
 		delete(additionalProperties, "nni_vlan")
