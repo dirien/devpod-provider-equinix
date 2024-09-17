@@ -86,8 +86,6 @@ type APIClient struct {
 
 	MetrosApi *MetrosApiService
 
-	OTPsApi *OTPsApiService
-
 	OperatingSystemsApi *OperatingSystemsApiService
 
 	OrganizationsApi *OrganizationsApiService
@@ -163,7 +161,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MembershipsApi = (*MembershipsApiService)(&c.common)
 	c.MetalGatewaysApi = (*MetalGatewaysApiService)(&c.common)
 	c.MetrosApi = (*MetrosApiService)(&c.common)
-	c.OTPsApi = (*OTPsApiService)(&c.common)
 	c.OperatingSystemsApi = (*OperatingSystemsApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.PasswordResetTokensApi = (*PasswordResetTokensApiService)(&c.common)
