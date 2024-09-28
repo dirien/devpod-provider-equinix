@@ -28,7 +28,7 @@ github.com/denisbrodbeck/machineid
 # github.com/docker/docker v25.0.5+incompatible
 ## explicit
 github.com/docker/docker/pkg/longpath
-# github.com/equinix/equinix-sdk-go v0.44.2
+# github.com/equinix/equinix-sdk-go v0.45.0
 ## explicit; go 1.19
 github.com/equinix/equinix-sdk-go/services/metalv1
 # github.com/ghodss/yaml v1.0.0

@@ -26,6 +26,7 @@ type Organization struct {
 	Description    *string                `json:"description,omitempty"`
 	// Force to all members to have enabled the two factor authentication after that date, unless the value is null
 	Enforce2faAt         *time.Time `json:"enforce_2fa_at,omitempty"`
+	Href                 *string    `json:"href,omitempty"`
 	Id                   *string    `json:"id,omitempty"`
 	Logo                 *string    `json:"logo,omitempty"`
 	Members              []Href     `json:"members,omitempty"`
@@ -280,6 +281,38 @@ func (o *Organization) HasEnforce2faAt() bool {
 // SetEnforce2faAt gets a reference to the given time.Time and assigns it to the Enforce2faAt field.
 func (o *Organization) SetEnforce2faAt(v time.Time) {
 	o.Enforce2faAt = &v
+}
+
+// GetHref returns the Href field value if set, zero value otherwise.
+func (o *Organization) GetHref() string {
+	if o == nil || IsNil(o.Href) {
+		var ret string
+		return ret
+	}
+	return *o.Href
+}
+
+// GetHrefOk returns a tuple with the Href field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetHrefOk() (*string, bool) {
+	if o == nil || IsNil(o.Href) {
+		return nil, false
+	}
+	return o.Href, true
+}
+
+// HasHref returns a boolean if a field has been set.
+func (o *Organization) HasHref() bool {
+	if o != nil && !IsNil(o.Href) {
+		return true
+	}
+
+	return false
+}
+
+// SetHref gets a reference to the given string and assigns it to the Href field.
+func (o *Organization) SetHref(v string) {
+	o.Href = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -633,6 +666,9 @@ func (o Organization) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Enforce2faAt) {
 		toSerialize["enforce_2fa_at"] = o.Enforce2faAt
 	}
+	if !IsNil(o.Href) {
+		toSerialize["href"] = o.Href
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -692,6 +728,7 @@ func (o *Organization) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "customdata")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "enforce_2fa_at")
+		delete(additionalProperties, "href")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "logo")
 		delete(additionalProperties, "members")

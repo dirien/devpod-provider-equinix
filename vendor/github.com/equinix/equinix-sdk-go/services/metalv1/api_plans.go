@@ -102,7 +102,7 @@ func (a *PlansApiService) FindPlansExecute(r ApiFindPlansRequest) (*PlanList, *h
 	localVarFormParams := url.Values{}
 
 	if r.categories != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "categories", r.categories, "csv")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "categories[]", r.categories, "csv")
 	}
 	if r.type_ != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")

@@ -18,16 +18,17 @@ var _ MappedNullable = &Project{}
 
 // Project struct for Project
 type Project struct {
-	BgpConfig   *Href                  `json:"bgp_config,omitempty"`
-	CreatedAt   *time.Time             `json:"created_at,omitempty"`
-	Customdata  map[string]interface{} `json:"customdata,omitempty"`
-	Devices     []Href                 `json:"devices,omitempty"`
-	Href        *string                `json:"href,omitempty"`
-	Id          *string                `json:"id,omitempty"`
-	Invitations []Href                 `json:"invitations,omitempty"`
-	MaxDevices  map[string]interface{} `json:"max_devices,omitempty"`
-	Members     []Href                 `json:"members,omitempty"`
-	Memberships []Href                 `json:"memberships,omitempty"`
+	BackendTransferEnabled *bool                  `json:"backend_transfer_enabled,omitempty"`
+	BgpConfig              *Href                  `json:"bgp_config,omitempty"`
+	CreatedAt              *time.Time             `json:"created_at,omitempty"`
+	Customdata             map[string]interface{} `json:"customdata,omitempty"`
+	Devices                []Href                 `json:"devices,omitempty"`
+	Href                   *string                `json:"href,omitempty"`
+	Id                     *string                `json:"id,omitempty"`
+	Invitations            []Href                 `json:"invitations,omitempty"`
+	MaxDevices             map[string]interface{} `json:"max_devices,omitempty"`
+	Members                []Href                 `json:"members,omitempty"`
+	Memberships            []Href                 `json:"memberships,omitempty"`
 	// The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
 	Name                 *string                `json:"name,omitempty"`
 	NetworkStatus        map[string]interface{} `json:"network_status,omitempty"`
@@ -59,6 +60,38 @@ func NewProject() *Project {
 func NewProjectWithDefaults() *Project {
 	this := Project{}
 	return &this
+}
+
+// GetBackendTransferEnabled returns the BackendTransferEnabled field value if set, zero value otherwise.
+func (o *Project) GetBackendTransferEnabled() bool {
+	if o == nil || IsNil(o.BackendTransferEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.BackendTransferEnabled
+}
+
+// GetBackendTransferEnabledOk returns a tuple with the BackendTransferEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetBackendTransferEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.BackendTransferEnabled) {
+		return nil, false
+	}
+	return o.BackendTransferEnabled, true
+}
+
+// HasBackendTransferEnabled returns a boolean if a field has been set.
+func (o *Project) HasBackendTransferEnabled() bool {
+	if o != nil && !IsNil(o.BackendTransferEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetBackendTransferEnabled gets a reference to the given bool and assigns it to the BackendTransferEnabled field.
+func (o *Project) SetBackendTransferEnabled(v bool) {
+	o.BackendTransferEnabled = &v
 }
 
 // GetBgpConfig returns the BgpConfig field value if set, zero value otherwise.
@@ -711,6 +744,9 @@ func (o Project) MarshalJSON() ([]byte, error) {
 
 func (o Project) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BackendTransferEnabled) {
+		toSerialize["backend_transfer_enabled"] = o.BackendTransferEnabled
+	}
 	if !IsNil(o.BgpConfig) {
 		toSerialize["bgp_config"] = o.BgpConfig
 	}
@@ -793,6 +829,7 @@ func (o *Project) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "backend_transfer_enabled")
 		delete(additionalProperties, "bgp_config")
 		delete(additionalProperties, "created_at")
 		delete(additionalProperties, "customdata")

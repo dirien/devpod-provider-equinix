@@ -2597,7 +2597,9 @@ func (r ApiFindTrafficRequest) Execute() (*http.Response, error) {
 /*
 FindTraffic Retrieve device traffic
 
-Returns traffic for a specific device.
+Returns the total amount of inbound or outbound traffic for a specific device. The default time period is 1 hour.
+
+Please note the results capture all network traffic for the server, but not all traffic may come from or be destined to the Internet and may be non-billable. Only Internet bound traffic is charged.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id Device UUID
