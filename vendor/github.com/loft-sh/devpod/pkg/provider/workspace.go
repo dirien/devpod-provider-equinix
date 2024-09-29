@@ -2,6 +2,7 @@ package provider
 
 import (
 	"strings"
+	"time"
 
 	"github.com/loft-sh/devpod/pkg/config"
 	devcontainerconfig "github.com/loft-sh/devpod/pkg/devcontainer/config"
@@ -130,6 +131,18 @@ type ContainerWorkspaceInfo struct {
 	// ContainerTimeout is the timeout in minutes to wait until the agent tries
 	// to delete the container.
 	ContainerTimeout string `json:"containerInactivityTimeout,omitempty"`
+
+	// Source is a WorkspaceSource to be used inside the container
+	Source WorkspaceSource `json:"source,omitempty"`
+
+	// ContentFolder holds the folder where the content is stored
+	ContentFolder string `json:"contentFolder,omitempty"`
+
+	// PullFromInsideContainer determines if project should be pulled from Source when container starts
+	PullFromInsideContainer types.StrBool `json:"pullFromInsideContainer,omitempty"`
+
+	// Agent holds the agent info
+	Agent ProviderAgentConfig `json:"agent,omitempty"`
 }
 
 type AgentWorkspaceInfo struct {
@@ -160,39 +173,56 @@ type AgentWorkspaceInfo struct {
 
 	// Origin holds the folder where this config was loaded from
 	Origin string `json:"-"`
+
+	// InjectTimeout specifies how long to wait for the agent to be injected into the dev container
+	InjectTimeout time.Duration `json:"injectTimeout,omitempty"`
+
+	// RegistryCache defines the registry to use for caching builds
+	RegistryCache string `json:"registryCache,omitempty"`
 }
 
 type CLIOptions struct {
 	// up options
-	ID                   string   `json:"id,omitempty"`
-	Source               string   `json:"source,omitempty"`
-	IDE                  string   `json:"ide,omitempty"`
-	IDEOptions           []string `json:"ideOptions,omitempty"`
-	PrebuildRepositories []string `json:"prebuildRepositories,omitempty"`
-	DevContainerImage    string   `json:"devContainerImage,omitempty"`
-	DevContainerPath     string   `json:"devContainerPath,omitempty"`
-	WorkspaceEnv         []string `json:"workspaceEnv,omitempty"`
-	Recreate             bool     `json:"recreate,omitempty"`
-	Proxy                bool     `json:"proxy,omitempty"`
-	DisableDaemon        bool     `json:"disableDaemon,omitempty"`
-	DaemonInterval       string   `json:"daemonInterval,omitempty"`
+	ID                   string            `json:"id,omitempty"`
+	Source               string            `json:"source,omitempty"`
+	IDE                  string            `json:"ide,omitempty"`
+	IDEOptions           []string          `json:"ideOptions,omitempty"`
+	PrebuildRepositories []string          `json:"prebuildRepositories,omitempty"`
+	DevContainerImage    string            `json:"devContainerImage,omitempty"`
+	DevContainerPath     string            `json:"devContainerPath,omitempty"`
+	DevContainerSource   string            `json:"devContainerSource,omitempty"`
+	EnvironmentTemplate  string            `json:"environmentTemplate,omitempty"`
+	WorkspaceEnv         []string          `json:"workspaceEnv,omitempty"`
+	WorkspaceEnvFile     []string          `json:"workspaceEnvFile,omitempty"`
+	InitEnv              []string          `json:"initEnv,omitempty"`
+	Recreate             bool              `json:"recreate,omitempty"`
+	Reset                bool              `json:"reset,omitempty"`
+	Proxy                bool              `json:"proxy,omitempty"`
+	DisableDaemon        bool              `json:"disableDaemon,omitempty"`
+	DaemonInterval       string            `json:"daemonInterval,omitempty"`
+	ForceCredentials     bool              `json:"forceCredentials,omitempty"`
+	GitCloneStrategy     git.CloneStrategy `json:"gitCloneStrategy,omitempty"`
+	FallbackImage        string            `json:"fallbackImage,omitempty"`
+	GitSSHSigningKey     string            `json:"gitSshSigningKey,omitempty"`
 
 	// build options
 	Repository string   `json:"repository,omitempty"`
 	SkipPush   bool     `json:"skipPush,omitempty"`
 	Platform   []string `json:"platform,omitempty"`
 
-	// TESTING
-	ForceBuild            bool `json:"forceBuild,omitempty"`
-	ForceDockerless       bool `json:"forceDockerless,omitempty"`
-	ForceInternalBuildKit bool `json:"forceInternalBuildKit,omitempty"`
+	ForceBuild            bool   `json:"forceBuild,omitempty"`
+	ForceDockerless       bool   `json:"forceDockerless,omitempty"`
+	ForceInternalBuildKit bool   `json:"forceInternalBuildKit,omitempty"`
+	SSHKey                string `json:"sshkey,omitempty"`
 }
 
 type BuildOptions struct {
 	CLIOptions
 
-	Platform string
-	NoBuild  bool
+	Platform      string
+	RegistryCache string
+	ExportCache   bool
+	NoBuild       bool
 }
 
 func (w WorkspaceSource) String() string {

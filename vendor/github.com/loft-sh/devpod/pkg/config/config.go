@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
+	"time"
 
 	"github.com/ghodss/yaml"
 	"github.com/loft-sh/devpod/pkg/telemetry"
@@ -116,8 +118,12 @@ func (c *Config) IDEOptions(ide string) map[string]OptionValue {
 }
 
 func (c *Config) ContextOption(option string) string {
-	if c.Current().Options != nil && c.Current().Options[option].Value != "" {
-		return c.Current().Options[option].Value
+	if c.Contexts != nil {
+		if _, ok := c.Contexts[c.DefaultContext]; ok && c.Current().Options != nil {
+			if _, ok := c.Current().Options[option]; ok && c.Current().Options[option].Value != "" {
+				return c.Current().Options[option].Value
+			}
+		}
 	}
 
 	for _, contextOption := range ContextOptions {
@@ -294,15 +300,23 @@ func SaveConfig(config *Config) error {
 		return err
 	}
 
-	err = os.MkdirAll(filepath.Dir(configOrigin), 0755)
+	err = os.MkdirAll(filepath.Dir(configOrigin), 0700)
 	if err != nil {
 		return err
 	}
 
-	err = os.WriteFile(configOrigin, out, 0666)
+	err = os.WriteFile(configOrigin, out, 0600)
 	if err != nil {
 		return err
 	}
 
 	return nil
+}
+
+func ParseTimeOption(cfg *Config, opt string) time.Duration {
+	timeout, err := strconv.ParseInt(cfg.ContextOption(opt), 10, 64)
+	if err != nil {
+		timeout = 20
+	}
+	return time.Duration(timeout) * time.Second
 }

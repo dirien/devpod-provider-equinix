@@ -133,6 +133,9 @@ type ProviderDockerlessOptions struct {
 	// IgnorePaths are additional ignore paths that should be ignored during deletion
 	IgnorePaths string `json:"ignorePaths,omitempty"`
 
+	// Registry to use as remote cache
+	RegistryCache string `json:"registryCache,omitempty"`
+
 	// DisableDockerCredentials prevents docker credentials from getting injected
 	DisableDockerCredentials types.StrBool `json:"disableDockerCredentials,omitempty"`
 }
@@ -170,6 +173,9 @@ type ProviderCustomDriverConfig struct {
 
 	// CanReprovision returns true if the driver can reprovision the devcontainer
 	CanReprovision types.StrBool `json:"canReprovision,omitempty"`
+
+	// GetDevContainerLogs returns the logs of the devcontainer
+	GetDevContainerLogs types.StrArray `json:"getDevContainerLogs,omitempty"`
 }
 
 type ProviderDockerDriverConfig struct {
@@ -178,6 +184,9 @@ type ProviderDockerDriverConfig struct {
 
 	// If false, DevPod will not try to install docker into the machine.
 	Install types.StrBool `json:"install,omitempty"`
+
+	// Builder to use with docker
+	Builder string `json:"builder,omitempty"`
 
 	// Environment variables to set when running docker commands
 	Env map[string]string `json:"env,omitempty"`
