@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Due to the [sunsetting](https://deploy.equinix.com/blog/sunsetting-equinix-metal/) of Equinix Metal at the end of June 2026 this DevPod Provider will not me maintained anymore!
+
 # Equinix provider for DevPod
 
 <img alt="logo" src="equinix.png" width="40%"/> 
